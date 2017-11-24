@@ -20,11 +20,11 @@ import preprocessor.getdoc2vec as gdv
 import utils.statisticsdata as sd
 
 import utils.calculatescore as cs
-from utils.multiconfig import MultiConfig
+from utils.trainhelper import model_selector
+from utils.multitrainhelper import get_multi_label_from_output, where_result_reshape, do_eval
 from data.mingluemultidata import MingLueMultiData
 
-from trainhelper import model_selector
-from multitrainhelper import get_multi_label_from_output, where_result_reshape, do_eval
+from config import MultiConfig
 
 def main(model_id, is_save):
     config = MultiConfig()

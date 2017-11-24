@@ -19,9 +19,11 @@ import preprocessor.getdoc2vec as gdv
 
 import utils.statisticsdata as sd
 import utils.calculatescore as cs
-from utils.config import Config
+from utils.trainhelper import accuracy, model_selector, do_eval
+
+from config import Config
+
 from data.mingluedata import MingLueData
-from trainhelper import accuracy, model_selector, do_eval
 
 
 def main(model_id, is_save):
