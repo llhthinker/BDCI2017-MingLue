@@ -32,6 +32,7 @@ BDCI2017，让AI当法官：http://www.datafountain.cn/#/competitions/277/intro
     - multitrainhelper.py: Task 2训练需要的一些函数
 
 - **models: 各种DL模型代码**
+
     | model\_id  | code\_file\_name   | model\_name   |
     | --------   | -----:  | :----:  |
     | 0     | fasttext.py |   FastText     |
