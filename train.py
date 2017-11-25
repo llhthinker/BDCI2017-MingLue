@@ -40,6 +40,7 @@ def main(model_id, is_save):
     if not force and os.path.exists(config.index2word_path) and os.path.exists(config.word2index_path):
         print("load word2index")
         dict_word2index = bpe.load_pickle(config.word2index_path)
+        print(dict_word2index['<UNK>'], dict_word2index['<PAD>'])
     else:
         print("save word2index and index2word")
         count, dict_word2index, dict_index2word = bd.build_vocabulary(data, min_count=config.min_count)
