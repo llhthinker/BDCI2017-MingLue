@@ -101,9 +101,9 @@ def build_vocabulary(data, min_count=3):
     """
     基于所有数据构建词表
     """
-    # add <pad> for embedding
-    # count = [('<UNK>', -1), ('<pad>', -1)]
-    count = [('UNK', -1)]
+    # add <PAD> for embedding
+    count = [('<UNK>', -1), ('<PAD>', -1)]
+    # count = [('UNK', -1)]
     words = []
     for line in data:
         words.extend(line)  #TODO ?
@@ -138,13 +138,13 @@ def build_dataset(ids, data, labels, dict_word2index, max_text_len):
             if word in dict_word2index:
                 index = dict_word2index[word]
             else:
-                index = 0    # UNK
+                index = 0    # <UNK>
             new_line.append(index)
 
-        zero_num = max_text_len - len(new_line)
-        while zero_num > 0:
-            new_line.append(0)
-            zero_num -= 1
+        pad_num = max_text_len - len(new_line)
+        while pad_num > 0:
+            new_line.append(1)   # <PAD>
+            pad_num -= 1
         dataset.append(new_line[:max_text_len])
     return new_ids, np.array(dataset, dtype=np.int64), np.array(new_labels, dtype=np.int64)
 
@@ -164,13 +164,13 @@ def build_dataset_over_sample(ids, data, labels, dict_word2index, max_text_len):
             if word in dict_word2index:
                 index = dict_word2index[word]
             else:
-                index = 0    # UNK
+                index = 0    # <UNK>
             new_line.append(index)
 
-        zero_num = max_text_len - len(new_line)
-        while zero_num > 0:
-            new_line.append(0)
-            zero_num -= 1
+        pad_num = max_text_len - len(new_line)
+        while pad_num > 0:
+            new_line.append(1)  # <PAD>
+            pad_num -= 1
         new_line_len = len(new_line)
         if new_line_len == max_text_len:
             dataset.append(new_line)
@@ -186,11 +186,11 @@ def build_dataset_over_sample(ids, data, labels, dict_word2index, max_text_len):
                 new_labels.append(labels[i]-1)
                 b += step_len
                 e += step_len
-            zero_num = max_text_len - (new_line_len - b)
-            if zero_num < int(max_text_len * 0.5):
-                while zero_num > 0:
-                    new_line.append(0)
-                    zero_num -= 1
+            pad_num = max_text_len - (new_line_len - b)
+            if pad_num < int(max_text_len * 0.5):
+                while pad_num > 0:
+                    new_line.append(1)  # <PAD>
+                    pad_num -= 1
                 dataset.append(new_line[b:e])
                 new_ids.append("train_"+ids[i])
                 new_labels.append(labels[i]-1)
@@ -213,13 +213,13 @@ def build_test_data(test_data, dict_word2index, max_text_len):
             if word in dict_word2index:
                 index = dict_word2index[word]
             else:
-                index = 0
+                index = 0   # <UNK>
             new_one_data.append(index)
 
-        zero_num = max_text_len - len(new_one_data)
-        while zero_num > 0:
-            new_one_data.append(0)
-            zero_num -= 1
+        pad_num = max_text_len - len(new_one_data)
+        while pad_num > 0:
+            new_one_data.append(1)  # <PAD>
+            pad_num -= 1
         dataset.append(new_one_data[:max_text_len])
 
     return np.array(dataset, dtype=np.int64)
@@ -249,19 +249,19 @@ def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_le
             if word in dict_word2index:
                 index = dict_word2index[word]
             else:
-                index = 0    # UNK
+                index = 0    # <UNK>
             new_line.append(index)
         line_splitted = sentences_splitted(text=new_line, split_chars=[dict_word2index[split_label] for split_label in ['。']])
         # 向后补齐sequence_lengt5h
         for ls_i, ls in enumerate(line_splitted):
             line_splitted[ls_i] = sentence_padding(sentence=ls, max_length=sequence_length)
         # 向后补齐num_sentences
-        zero_num = num_sentences - len(line_splitted)
-        if zero_num < 0:
+        pad_num = num_sentences - len(line_splitted)
+        if pad_num < 0:
             line_splitted = line_splitted[-1*num_sentences:]
-        while zero_num > 0:
-            line_splitted.append([0 for _ in range(sequence_length)])
-            zero_num -= 1
+        while pad_num > 0:
+            line_splitted.append([1 for _ in range(sequence_length)])  # <PAD>
+            pad_num -= 1
         dataset.append(line_splitted)
     print(np.shape(dataset))
     # [total_size, num_sentences, sequence_length]

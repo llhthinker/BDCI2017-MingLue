@@ -35,7 +35,7 @@ def build_model(model_path, data_paths):
 #    data_paths = ['../data/seg_full_shuffle_train.txt', '../data/seg_test.txt']
 #    data_paths = ['../data/train_m_preprocessed.txt', '../data/test_m_preprocessed.txt']
     sentences = MySentences(data_paths) # a memory-friendly iterator
-    model = Word2Vec(sentences, size=128, window=5, min_count=3, 
+    model = Word2Vec(sentences, size=256, window=5, min_count=5, 
                          workers=multiprocessing.cpu_count(), sg=1) # sg = 1: skip-gram
     
     model.save(model_path)
