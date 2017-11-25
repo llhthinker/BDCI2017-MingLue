@@ -23,7 +23,7 @@ class Config:
                    'RCNNWithDoc2Vec',
                   ]
 
-    batch_size = 32  # 64 is has cuda
+    batch_size = 32 # 64 is has cuda
     step = 20     # 3000 // batch_size if has cuda
     num_workers = 4
 #    vocab_size = 241684
@@ -34,7 +34,10 @@ class Config:
     embedding_size = 128
     num_class = 8
     learning_rate = 0.001
-    learning_rate2 = 0.001  # = 0.0 is has pretrain emb 
+    if not is_pretrain:
+        learning_rate2 = 0.001  
+    else:
+        learning_rate2 = 0.0    # 0.0 if pre train emb
     lr_decay = 0.75
     begin_epoch = 2
     weight_decay = 0.0
@@ -66,7 +69,12 @@ class Config:
     total_out_size = 100
     dmpv_model_path = "./doc2vec/doc2vec.128d.dmpv.model.bin"
     dbow_model_path = "./doc2vec/doc2vec.128d.dbow.model.bin"
-
+    
+    # with element MLP
+    use_element=False
+    element_vector_path = "./pickles/sample_seg_train_element_vector.pkl"
+    element_embedding_size = 256
+    element_size = 34
 
     loss_weight_value = [ 
          0.4243,
@@ -116,7 +124,10 @@ class MultiConfig:
     embedding_size = 128
     num_class = 452
     learning_rate = 0.001
-    learning_rate2 = 0.001  # 0.0 if pre train emb
+    if not is_pretrain:
+        learning_rate2 = 0.001  
+    else:
+        learning_rate2 = 0.0    # 0.0 if pre train emb
     lr_decay = 0.75
     begin_epoch = 2
     weight_decay = 0.0
@@ -149,6 +160,9 @@ class MultiConfig:
     total_out_size = 100
     dmpv_model_path = "./doc2vec/doc2vec.128d.dmpv.model.bin"
     dbow_model_path = "./doc2vec/doc2vec.128d.dbow.model.bin"
- 
 
-
+    # with element MLP
+    use_element = False
+    element_vector_path = "./pickles/sample_seg_train_element_vector.pkl"
+    element_embedding_size = 256
+    element_size = 34

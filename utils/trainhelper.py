@@ -8,6 +8,7 @@ from models.textrcnn import TextRCNN
 from models.hierarchical import HAN
 from models.cnnwithdoc2vec import CNNWithDoc2Vec
 from models.rcnnwithdoc2vec import RCNNWithDoc2Vec
+from models.modelwithelement import ModelWithElement
 
 import preprocessor.builddataset as bd
 import preprocessor.getdoc2vec as gdv
@@ -20,9 +21,12 @@ def accuracy(predictions, labels):
     return (100.0 * np.sum(np.array(predictions) == np.array(labels))
             / len(labels))
 
-def model_selector(config, model_id):
+def model_selector(config, model_id, use_element):
     model = None
-    if model_id == 0:
+    if use_element:
+        print("use element")
+        model = ModelWithElement(config, model_id)
+    elif model_id == 0:
         model = FastText(config)
     elif model_id == 1:
         model = TextCNN(config)
@@ -82,3 +86,11 @@ def do_eval(valid_loader, model, model_id, has_cuda, dmpv_model=None, dbow_model
     print("Micro-Averaged F1:", cs.micro_avg_f1(predicted_labels, true_labels, model.num_class))
     model.is_training = True
     return loss_weight
+
+
+def build_element_vec(ids, all_element_vec):
+    element_vec = []
+    for id in ids:
+        element_vec.append(all_element_vec[id])
+    
+    return np.array(element_vec, dtype=np.int64)

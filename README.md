@@ -53,15 +53,15 @@ BDCI2017，让AI当法官：http://www.datafountain.cn/#/competitions/277/intro
 - **主目录: 存放训练和预测运行代码和相关配置代码**
     - train.py: Task 1 训练脚本
     ```
-    python ./train.py --model-id [model_id] --is-save [y/n]
+    python ./train.py --model-id [model_id] --use-element [y/n] --is-save [y/n]
     ```
     - multitrain.py: Task 2 训练脚本
     ```
-    python ./multitrain.py --model-id [model_id] --is-save [y/n]
+    python ./multitrain.py --model-id [model_id] --use-element [y/n] --is-save [y/n]
     ```
     - predict.py: 预测脚本，载入已有模型进行预测并生成json格式的结果文件
     ```
-    # 注意model_id要和model\_path对应的Model保持一致
+    # 注意model_id要和model_path对应的Model保持一致
     python ./predict --task1-model-id [model_id] --task1-model-path [model_path] --task2-model-id [model_id] --task2-model-path [model_path]
     ```
     - mix\_predict.py: 融合多个模型进行预测，目前只实现Task 1

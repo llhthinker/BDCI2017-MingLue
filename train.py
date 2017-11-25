@@ -19,15 +19,16 @@ import preprocessor.getdoc2vec as gdv
 
 import utils.statisticsdata as sd
 import utils.calculatescore as cs
-from utils.trainhelper import accuracy, model_selector, do_eval
+from utils.trainhelper import accuracy, model_selector, do_eval, build_element_vec
 
 from config import Config
 
 from data.mingluedata import MingLueData
 
 
-def main(model_id, is_save):
+def main(model_id, use_element, is_save):
     config = Config()
+    config.use_element = use_element
    # model_id = int(input("Please select a model(input model id):\n0: fastText\n1: TextCNN\n2: TextRCNN\n4: HAN\nInput: "))
    # is_save = input("Save Model?(y/n): ")
     print("loading data...")
@@ -92,10 +93,12 @@ def main(model_id, is_save):
  
     config.vocab_size = len(dict_word2index)
     print('config vocab size:', config.vocab_size)
-    model = model_selector(config, model_id)
+    model = model_selector(config, model_id, use_element)
     if config.has_cuda:
         model = model.cuda()  
     
+    if use_element:
+        all_element_vector = bpe.load_pickle(config.element_vector_path)
 
     loss_weight = torch.FloatTensor(config.loss_weight_value)
     loss_weight = loss_weight + 1 - loss_weight.mean()
@@ -134,6 +137,13 @@ def main(model_id, is_save):
                 # [batch_size, (doc2vec_size*2)]
                 # print(doc2vec.size())
                 outputs = model(inputs, doc2vec)
+            elif use_element:
+                element_vec = build_element_vec(ids, all_element_vector)
+                if config.has_cuda:
+                    element_vec = Variable(torch.LongTensor(element_vec).cuda())
+                else:
+                    element_vec = Variable(torch.LongTensor(element_vec))
+                outputs = model(inputs, element_vec)
             else:
                 outputs = model(inputs)
             loss = loss_fun(outputs, labels)
@@ -179,7 +189,11 @@ def main(model_id, is_save):
     time_stamp = str(int(time.time()))
     
     if is_save == "y":
-        torch.save(model.state_dict(), config.model_path+"."+time_stamp+"."+config.model_names[model_id])
+        if use_element:
+            save_path = config.model_path+"."+time_stamp+".use_element."+config.model_names[model_id]
+        else:
+            save_path = config.model_path+"."+time_stamp+config.model_names[model_id]
+        torch.save(model.state_dict(), save_path)
     else:
         print("not save")
 
@@ -187,7 +201,12 @@ def main(model_id, is_save):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--model-id", type=int)
+    parser.add_argument("--use-element", type=str)
     parser.add_argument("--is-save", type=str)
     args = parser.parse_args()
-
-    main(args.model_id, args.is_save)
+    
+    if args.use_element == 'y':
+        use_element = True
+    else:
+        use_element = False
+    main(args.model_id, use_element, args.is_save)

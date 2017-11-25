@@ -29,6 +29,7 @@ class TextRCNN(nn.Module):
         self.is_training = True
         self.dropout_rate = config.dropout_rate
         self.num_class = config.num_class
+        self.use_element = config.use_element
         self.config = config
 
         self.embedding = nn.Embedding(num_embeddings=config.vocab_size, 
@@ -76,8 +77,9 @@ class TextRCNN(nn.Module):
         out = out.view(-1, out.size(1))
 #         print(out.size())
 #        if self.is_training:
-#        out = F.dropout(input=out, p=self.dropout_rate)
-        out = self.fc(out)
+        if not self.use_element:
+            # out = F.dropout(input=out, p=self.dropout_rate)
+            out = self.fc(out)
         return out
 
     def get_optimizer(self, lr, lr2, weight_decay):

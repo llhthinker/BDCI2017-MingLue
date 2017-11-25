@@ -25,7 +25,7 @@ def build_pretrain_emb(index2word, model_path, embedding_path):
             pretrain_emb.append(model.wv[word])
         else:
             count += 1
-            rand_emb = np.random.uniform(low=-1, high=1, size=embedding_size)
+            rand_emb = np.random.normal(loc=0, scale=1, size=embedding_size)
             pretrain_emb.append(rand_emb)
     print("rand init count:",count)
     pretrain_emb = np.array(pretrain_emb)
