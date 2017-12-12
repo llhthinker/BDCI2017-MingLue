@@ -28,6 +28,7 @@ from data.mingluedata import MingLueData
 
 def main(model_id, use_element, is_save):
     config = Config()
+    print("epoch num: ", config.epoch_num)
     config.use_element = use_element
    # model_id = int(input("Please select a model(input model id):\n0: fastText\n1: TextCNN\n2: TextRCNN\n4: HAN\nInput: "))
    # is_save = input("Save Model?(y/n): ")
@@ -48,33 +49,42 @@ def main(model_id, use_element, is_save):
         bpe.save_dict(dict_index2word, config.index2word_path)
         bpe.save_dict(dict_word2index, config.word2index_path)
         return 
-    if model_id == 4:
-        train_data, train_labels = bd.build_data_set_HAN(data, labels, dict_word2index, num_sentences=config.num_sentences,
-                                                         sequence_length=config.sequence_length)
-        train_ids, valid_ids = bd.split_data(ids, radio=0.8)
-        train_X, valid_X = bd.split_data(train_data, radio=0.8)
-        train_y, valid_y = bd.split_data(train_labels, radio=0.8)
-
-    else:
-        train_ids, valid_ids = bd.split_data(ids, radio=0.8)
-        train_data, valid_data = bd.split_data(data, radio=0.8)
-        train_labels, valid_labels = bd.split_data(labels, radio=0.8)
-        # over sample for train data
-        train_ids, train_X, train_y = bd.build_dataset_over_sample(train_ids, train_data, 
-                                        train_labels, dict_word2index, config.max_text_len)
-        valid_ids, valid_X, valid_y = bd.build_dataset(valid_ids, valid_data, 
-                        valid_labels, dict_word2index, config.max_text_len)
-        print("trainset size:", len(train_ids))
-        print("validset size:", len(valid_ids))
 
 #    train_ids, train_X, train_y = bd.over_sample(train_ids, train_X, train_y)
 #    print(train_y.shape[0], Counter(train_y))
     if is_save == 'y':
-        all_train_ids, all_train_X, all_train_y = bd.build_dataset(ids, data, 
+        if model_id != 4:
+            all_train_ids, all_train_X, all_train_y = bd.build_dataset_over_sample(ids, data, 
                                     labels, dict_word2index, config.max_text_len)
-        dataset = MingLueData(all_train_ids, all_train_X, all_train_y)
+            dataset = MingLueData(all_train_ids, all_train_X, all_train_y)
+        else:
+            print("save HAN...")
+            train_data, train_labels = bd.build_data_set_HAN(data, labels, dict_word2index, num_sentences=config.num_sentences, sequence_length=config.sequence_length)
+            print(np.shape(train_data), np.shape(train_labels))
+            print(len(ids))
+            dataset = MingLueData(ids, train_data, train_labels)
+            
     else: 
+        if model_id == 4:
+            train_data, train_labels = bd.build_data_set_HAN(data, labels, dict_word2index, num_sentences=config.num_sentences, sequence_length=config.sequence_length)
+            train_ids, valid_ids = bd.split_data(ids, radio=0.9)
+            train_X, valid_X = bd.split_data(train_data, radio=0.9)
+            train_y, valid_y = bd.split_data(train_labels, radio=0.9)
+        else:
+            train_ids, valid_ids = bd.split_data(ids, radio=0.9)
+            train_data, valid_data = bd.split_data(data, radio=0.9)
+            train_labels, valid_labels = bd.split_data(labels, radio=0.9)
+            # over sample for train data
+            train_ids, train_X, train_y = bd.build_dataset_over_sample(train_ids, train_data, 
+                                        train_labels, dict_word2index, config.max_text_len)
+            valid_ids, valid_X, valid_y = bd.build_dataset(valid_ids, valid_data, 
+                        valid_labels, dict_word2index, config.max_text_len)
+        print("trainset size:", len(train_ids))
+        print("validset size:", len(valid_ids))
         dataset = MingLueData(train_ids, train_X, train_y)
+
+    del data
+
     batch_size = config.batch_size
     if model_id == 4:
         batch_size = config.han_batch_size
@@ -82,8 +92,9 @@ def main(model_id, use_element, is_save):
                                batch_size=batch_size, # 更改便于为不同模型传递不同batch
                                shuffle=True,
                                num_workers=config.num_workers)
-    dataset = MingLueData(valid_ids, valid_X, valid_y)
-    valid_loader = DataLoader(dataset=dataset,
+    if is_save != 'y':
+        dataset = MingLueData(valid_ids, valid_X, valid_y)
+        valid_loader = DataLoader(dataset=dataset,
                               batch_size=batch_size, # 更改便于为不同模型传递不同batch
                               shuffle=False,
                               num_workers=config.num_workers)
@@ -103,9 +114,11 @@ def main(model_id, use_element, is_save):
     loss_weight = torch.FloatTensor(config.loss_weight_value)
     loss_weight = loss_weight + 1 - loss_weight.mean()
     print("loss weight:",loss_weight)
-#    loss_fun = nn.CrossEntropyLoss(loss_weight.cuda())
     
-    loss_fun = nn.CrossEntropyLoss()
+    
+    loss_fun = nn.CrossEntropyLoss(loss_weight.cuda())
+    
+#    loss_fun = nn.CrossEntropyLoss()
 #    optimizer = optim.Adam(model.parameters(),lr=config.learning_rate, weight_decay=config.weight_decay)
     optimizer = model.get_optimizer(config.learning_rate,
                                     config.learning_rate2,
@@ -113,6 +126,7 @@ def main(model_id, use_element, is_save):
     print("training...")
 
     weight_count = 0
+    max_score = 0
     total_loss_weight = torch.FloatTensor(torch.zeros(8))
     for epoch in range(config.epoch_num):
         print("lr:",config.learning_rate,"lr2:",config.learning_rate2)
@@ -157,19 +171,24 @@ def main(model_id, use_element, is_save):
                 if epoch % config.epoch_step == config.epoch_step-1:
                     _, predicted = torch.max(outputs.data, 1)
                     predicted = predicted.cpu().numpy().tolist()
-                    predicted = [i[0] for i in predicted]
+                    #  predicted = [i[0] for i in predicted]
                     running_acc = accuracy(predicted, labels.data.cpu().numpy())
                     print('[%d, %5d] loss: %.3f, acc: %.3f' %
                         (epoch + 1, i + 1, running_loss / config.step, running_acc))
                 running_loss = 0.0
-    
+
         if is_save != 'y' and epoch % config.epoch_step == config.epoch_step-1:
             print("predicting...")
             if model_id == 5 or model_id == 6:
-                loss_weight = do_eval(valid_loader, model, model_id,
+                loss_weight, score = do_eval(valid_loader, model, model_id,
                                      config.has_cuda, dmpv_model, dbow_model)
             else:
-                loss_weight = do_eval(valid_loader, model, model_id, config.has_cuda)
+                loss_weight, score = do_eval(valid_loader, model, model_id, config.has_cuda)
+                if score >= 0.478 and score > max_score:
+                    max_score = score
+                    save_path = config.model_path+"."+str(score)+"."+config.model_names[model_id]
+                    torch.save(model.state_dict(), save_path)
+
             if epoch >= 3:
                 weight_count += 1
                 total_loss_weight += loss_weight
@@ -192,7 +211,7 @@ def main(model_id, use_element, is_save):
         if use_element:
             save_path = config.model_path+"."+time_stamp+".use_element."+config.model_names[model_id]
         else:
-            save_path = config.model_path+"."+time_stamp+config.model_names[model_id]
+            save_path = config.model_path+"."+time_stamp+"."+config.model_names[model_id]
         torch.save(model.state_dict(), save_path)
     else:
         print("not save")

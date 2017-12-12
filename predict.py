@@ -11,13 +11,12 @@ from models.fasttext import FastText
 from models.textcnn import TextCNN
 from models.textrcnn import TextRCNN
 
-from utils.config import Config
-from utils.multiconfig import MultiConfig
+from config import Config, MultiConfig
 from data.mingluedata import MingLueTestData
 import preprocessor.builddataset as bd
 import preprocessor.buildpretrainemb as bpe
 
-from multitrainhelper import get_multi_label_from_output
+from utils.multitrainhelper import get_multi_label_from_output
 
 
 def load_model(model_path, model_id, config):
@@ -65,7 +64,7 @@ def predict(test_loader, model, has_cuda):
         outputs = model(Variable(texts))
         _, predicted = torch.max(outputs.data, 1)
         predicted = predicted.cpu().numpy().tolist()
-        predicted = [i[0] for i in predicted]
+        # predicted = [i[0] for i in predicted]
         predicted_labels.extend(predicted)
 
     predicted_labels = [label+1 for label in predicted_labels]
@@ -92,7 +91,6 @@ def predict_multi_label(test_loader, multi_model, config):
 
 def generate_result_json(tests_id, predicted_labels, predicted_multi_labels, result_path):
     test_len = len(tests_id)
-    res = []
     tmp_law = [1]
     time_stamp = str(int(time.time()))
     outf = open(result_path+"."+time_stamp, 'a')
@@ -100,7 +98,8 @@ def generate_result_json(tests_id, predicted_labels, predicted_multi_labels, res
         result = {}
         result["id"] = tests_id[i]
         result["penalty"] = predicted_labels[i]
-        result["laws"] = predicted_multi_labels[i]
+        result["laws"] = list(set(predicted_multi_labels[i]))
+        # result["laws"] = [-1]
       #  res.append(result)
         json.dump(result, outf)
         outf.write('\n')
@@ -111,6 +110,8 @@ def main(task1_model_id, task1_model_path, task2_model_id, task2_model_path):
     multi_config = MultiConfig()
     config.is_training = False
     config.dropout_rate = 0.0
+    multi_config.is_training = False
+    multi_config.dropout_rate = 0.0
     # model_id = int(input("Please select a model(input model id):\n0: fastText\n1: TextCNN\n2: TextRCNN\nInput: "))
 
     print("loading data...")
@@ -134,6 +135,7 @@ def main(task1_model_id, task1_model_path, task2_model_id, task2_model_path):
 
     print("predicting...")
     predicted_labels = predict(test_loader, model1, config.has_cuda)
+    predicted_multi_labels = [[]]
     predicted_multi_labels = predict_multi_label(test_loader, model2, multi_config)
     generate_result_json(tests_id, predicted_labels, predicted_multi_labels, config.result_path)
 

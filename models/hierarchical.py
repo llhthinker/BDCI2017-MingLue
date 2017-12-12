@@ -1,5 +1,5 @@
-
 import numpy as np
+import os
 import torch
 import torch.nn as nn
 from torch.autograd import Variable
@@ -24,9 +24,12 @@ class WordToSentence(nn.Module):
         self.word_context = nn.Parameter(torch.FloatTensor(config.word_context_size, 1).uniform_(-0.1, 0.1).cuda())  # TODO 改变初始化方式
         self.word_projection = nn.Linear(config.word_hidden_size * 2, config.word_context_size)
         self.word_context_size = config.word_context_size
-        self.bn = nn.BatchNorm1d(num_features=config.word_context_size)
+        self.bn = nn.BatchNorm1d(num_features=config.sequence_length)
         self.word_proj_nonlinearity = self.projection_nonlinearity()
         self.softmax = nn.Softmax()
+        if os.path.exists(config.embedding_path) and config.is_training and config.is_pretrain:
+            print("pretrain...")
+            self.word_embeddings.weight.data.copy_(torch.from_numpy(np.load(config.embedding_path)))
 
     def get_optimizer(self, lr, lr2, weight_decay):
         return torch.optim.Adam(self.parameters(), lr=lr, weight_decay=weight_decay)
@@ -70,11 +73,13 @@ class WordToSentence(nn.Module):
         d1 = output.size()[0]
         d2 = output.size()[1]
         d3 = output.size()[2]
-        projection = self.word_proj_nonlinearity(self.word_projection(output)).view(-1, self.word_context_size)  # [2x3, 5]
+        projection = self.word_projection(output)
+        projection = self.bn(projection)
+        projection = self.word_proj_nonlinearity(projection).view(-1, self.word_context_size)  # [2x3, 5]
         attention = torch.mm(projection, self.word_context)  # [2x3, 1]
         attention = self.softmax(attention.view(d1, d2))  # [2, 3]
         attention = attention.view(1, d1 * d2).expand(d3, d1 * d2).resize(d1 * d3, d2)
-        output = output.transpose(1, 2).transpose(0, 1).resize(d1 * d3, d2)  # [4,2,3]
+        output = output.permute(2, 0, 1).resize(d1 * d3, d2)  # [4,2,3]
         sentence_tensor = (output * attention).sum(1).resize(d3, d1).transpose(0, 1)
         return sentence_tensor
 
@@ -105,7 +110,7 @@ class SentenceToDocment(nn.Module):
         self.sentence_context = nn.Parameter(torch.FloatTensor(config.sentence_context_size, 1).uniform_(-0.1, 0.1).cuda())
         self.sentence_projection = nn.Linear(config.sentence_hidden_size * 2, config.sentence_context_size)
         self.sentence_context_size = config.sentence_context_size
-        self.bn = nn.BatchNorm1d(num_features=config.sentence_context_size)
+        self.bn = nn.BatchNorm1d(num_features=config.num_sentences)
         self.sentence_proj_nonlinearity = self.projection_nonlinearity()
         self.softmax = nn.Softmax()
 
@@ -142,11 +147,11 @@ class SentenceToDocment(nn.Module):
         d1 = output.size()[0]
         d2 = output.size()[1]
         d3 = output.size()[2]
-        projection = self.sentence_proj_nonlinearity(self.sentence_projection(output)).view(-1, self.sentence_context_size)  # [2*3, 5]
+        projection = self.sentence_proj_nonlinearity(self.bn(self.sentence_projection(output))).view(-1, self.sentence_context_size)  # [2*3, 5]
         attention = torch.mm(projection, self.sentence_context)  # [2x3, 1]
         attention = self.softmax(attention.view(d1, d2))  # [2, 3]
         attention = attention.view(1, d1 * d2).expand(d3, d1 * d2).resize(d1 * d3, d2)
-        output = output.transpose(1, 2).transpose(0, 1).resize(d1 * d3, d2)  # [4,2,3]
+        output = output.permute(2, 0, 1).resize(d1 * d3, d2)  # [4,2,3]
         document_tensor = (output * attention).sum(1).resize(d3, d1).transpose(0, 1)
         return document_tensor
 
@@ -168,17 +173,17 @@ class HAN(nn.Module):
     def __init__(self, config):
         super(HAN, self).__init__()
         self.num_class = config.num_class
-        # self.dropout = nn.Dropout(p=config.dropout_rate)
+ #       self.dropout = nn.Dropout(p=config.dropout_rate)
         self.word_to_sentence = WordToSentence(config)
         self.sentence_to_document = SentenceToDocment(config)
         self.config = config
         self.is_training = True
         # set up the intermediate output step, if required
-        # self.intermediate = False
-        # self.intermediate_output_nonlinearity = nn.ELU
-        # if self.intermediate:
-        #     self.intermediate_output = nn.Linear(config.sentence_hidden_size * 2, config.sentence_hidden_size * 2)
-        #     self.intermediate_nonlinearity = self.intermediate_output_nonlinearity()
+        #self.intermediate = False
+        #self.intermediate_output_nonlinearity = nn.ELU
+        #if self.intermediate:
+            # self.intermediate_output = nn.Linear(config.sentence_hidden_size * 2, config.sentence_hidden_size * 2)
+             #self.intermediate_nonlinearity = self.intermediate_output_nonlinearity()
 
         # final transformation to class weightings
         self.fc = nn.Linear(config.sentence_hidden_size * 2, self.num_class)
@@ -191,7 +196,7 @@ class HAN(nn.Module):
             n = 0
             idx = len(line) - 1
             while idx >= 0:
-                if int(line[idx]) != 0:
+                if int(line[idx]) != 0: #<pad>
                     break
                 n += 1
                 idx -= 1
@@ -204,7 +209,7 @@ class HAN(nn.Module):
     def is_padded_list(self, seq):
         flag = True
         for w in seq:
-            if w != 0:
+            if w != 0: #<pad>
                 flag = False
                 break
         return flag
@@ -242,17 +247,16 @@ class HAN(nn.Module):
         num_sentences_lens = self.get_num_sentences_lens(x.data)
         x = x.view(-1, sequence_length)  # [batch_size * num_sentences, sequence_length]
         x = self.word_to_sentence(x, word_hidden_stat, sequence_lens)  # [batch_size * num_sentences, word_hidden_size*2]
-        x = x.view(-1, num_sentences, self.config.word_hidden_size*2)  # [batch_size , num_sentences, word_hidden_size*2]
+        x = x.resize(batch_size, num_sentences, self.config.word_hidden_size*2)  # [batch_size , num_sentences, word_hidden_size*2]
         self.document_tensor = self.sentence_to_document(x, sent_hidden_stat, num_sentences_lens)  # [batch_size, sentence_hidden_size*2]
         # dropout or not
-        # self.document_tensor = self.dropout(self.document_tensor)
+#        self.document_tensor = self.dropout(self.document_tensor)
         #
-        # if self.intermediate:
-        #     self.document_tensor = self.intermediate_output(self.document_tensor)
-        #     self.document_tensor = self.intermediate_nonlinearity(self.document_tensor)
+        #if self.intermediate:
+        #    self.document_tensor = self.intermediate_output(self.document_tensor)
+        #    self.document_tensor = self.intermediate_nonlinearity(self.document_tensor)
 
         outputs = self.fc(self.document_tensor)
-
         return outputs
 
     def init_rnn_hidden(self, batch_size):
@@ -268,8 +272,13 @@ class HAN(nn.Module):
         # return torch.optim.Adam(self.parameters(), lr=lr, weight_decay=weight_decay)
 
         return torch.optim.Adam([
-            {'params': self.word_to_sentence.parameters()},
+            {'params': self.word_to_sentence.word_to_sentence.parameters()},
+            {'params': self.word_to_sentence.word_context},
+            {'params': self.word_to_sentence.word_projection.parameters()},
+            {'params': self.word_to_sentence.bn.parameters()},            
+            {'params': self.word_to_sentence.word_embeddings.parameters(), 'lr': lr2},
             {'params': self.sentence_to_document.parameters()},
             {'params': self.fc.parameters()}
+        #    {'params': self.intermediate_output.parameters()}
         ], lr=lr, weight_decay=weight_decay)
 

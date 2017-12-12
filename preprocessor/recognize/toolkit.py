@@ -190,5 +190,11 @@ def _testdrive_zhnum2int():
     for each in test_map:
         assert(test_map[each] == zhnum2int(each))
 
+def mixzhnum2int(a):
+    """用于识别阿拉伯数字和中文数字结合型的数字字符串。
+    在该种类型中，中文数字一般为阿拉伯数字的数量级，需要相乘。如：28万。
+    """
+    pass
+
 if __name__ == '__main__':
     _testdrive_zhnum2int()

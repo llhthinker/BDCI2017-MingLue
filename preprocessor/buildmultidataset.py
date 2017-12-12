@@ -239,7 +239,7 @@ def split_data(data, radio=0.7):
     new_data2 = data[split_index : ]
     return new_data1, new_data2
 
-def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_length):
+def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_length, num_class):
     """
     基于词表构建数据集（数值化）
     """
@@ -248,7 +248,15 @@ def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_le
 #    np.random.shuffle(indices)
     new_labels = []
     for i in indices:
-        new_labels.append(labels[i]-1)
+        multi_label = np.zeros(num_class)
+        for li in labels[i]:
+            if li > num_class:
+                print(li)
+                print(labels[i])
+                labels[i].remove(li)
+        multi_label[labels[i]] = 1
+        new_labels.append(multi_label)
+        # new_labels.append(labels[i]-1)
         new_line = []
         for word in data[i]:
             if word in dict_word2index:
@@ -256,7 +264,8 @@ def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_le
             else:
                 index = 0    # <UNK>
             new_line.append(index)
-        line_splitted = sentences_splitted(text=new_line, split_chars=[dict_word2index[split_label] for split_label in ['。']])
+        line_splitted = sentences_splitted(text=new_line, split_chars=[dict_word2index[split_label]
+                                                                       for split_label in ['。', '！', '？']])
         # 向后补齐sequence_lengt5h
         for ls_i, ls in enumerate(line_splitted):
             line_splitted[ls_i] = sentence_padding(sentence=ls, max_length=sequence_length)
@@ -277,7 +286,7 @@ def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_le
 def sentence_padding(sentence, max_length):
     if len(sentence) <= max_length:
         for _ in range(max_length-len(sentence)):
-            sentence.append(0)
+            sentence.append(1)  # <PAD>
     else:
         sentence = sentence[max_length*(-1):]
     return sentence

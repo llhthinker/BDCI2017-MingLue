@@ -19,10 +19,11 @@ class MySentences(object):
         self.fname_list = fname_list
 
     def __iter__(self):
-        for fname in self.fname_list:
+        for i, fname in enumerate(self.fname_list):
             for line in open(fname, 'r'):
                 line = line.strip()
-                line = line.split('\t')[1]
+                if i >= 1: # MingLueData
+                    line = line.split('\t')[1]
                 sentences = line.split("。")
                 for sen in sentences:
                     yield sen.split()
@@ -47,6 +48,7 @@ if __name__ == "__main__":
     parser.add_argument("--train-file", type=str)
     parser.add_argument("--test-file", type=str)
     args = parser.parse_args()
+    
     data_paths = [args.train_file, args.test_file]
     build_model(args.word2vec_model_path, data_paths)
     # model = Word2Vec.load(model_path)

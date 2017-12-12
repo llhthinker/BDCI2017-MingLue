@@ -65,7 +65,7 @@ class TextCNN(nn.Module):
         out = out.view(-1, out.size(1))
 #         print(out.size())
         if not self.use_element:
-            # out = F.dropout(input=out, p=self.dropout_rate)
+            out = F.dropout(input=out, p=self.dropout_rate)
             out = self.fc(out)
         return out
 

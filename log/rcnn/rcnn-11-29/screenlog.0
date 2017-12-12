@@ -1,0 +1,976 @@
+loading data...
+max sentence length:  42583
+total vocab size 691360
+load word2index
+trainset size: 96000
+validset size: 24000
+data loaded
+config vocab size: 194170
+Loading pretrain embedding...
+training...
+lr: 0.001 lr2: 0.0
+predict_set_size / true_set_size:  0.4676258992805755
+[1,   156] loss: 0.042, jaccard: 0.316
+predict_set_size / true_set_size:  0.759581881533101
+[1,   312] loss: 0.020, jaccard: 0.509
+predict_set_size / true_set_size:  0.7833333333333333
+[1,   468] loss: 0.018, jaccard: 0.566
+predict_set_size / true_set_size:  0.7090909090909091
+[1,   624] loss: 0.017, jaccard: 0.557
+predict_set_size / true_set_size:  0.9230769230769231
+[1,   780] loss: 0.016, jaccard: 0.602
+predict_set_size / true_set_size:  0.9821428571428571
+[1,   936] loss: 0.015, jaccard: 0.572
+predict_set_size / true_set_size:  0.8984375
+[1,  1092] loss: 0.014, jaccard: 0.621
+predict_set_size / true_set_size:  0.8746081504702194
+[1,  1248] loss: 0.013, jaccard: 0.622
+predict_set_size / true_set_size:  0.7973421926910299
+[1,  1404] loss: 0.012, jaccard: 0.600
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 263, 263], [51, 66, 263, 263]]
+predict_set_size / true_set_size:  0.8395453367528394
+Jaccard: 0.6298129339988625
+lr: 0.001 lr2: 0.0
+predict_set_size / true_set_size:  0.8035087719298246
+[2,   156] loss: 0.012, jaccard: 0.680
+predict_set_size / true_set_size:  0.9566929133858267
+[2,   312] loss: 0.011, jaccard: 0.640
+predict_set_size / true_set_size:  0.7810457516339869
+[2,   468] loss: 0.011, jaccard: 0.678
+predict_set_size / true_set_size:  0.9612903225806452
+[2,   624] loss: 0.010, jaccard: 0.689
+predict_set_size / true_set_size:  0.9264705882352942
+[2,   780] loss: 0.010, jaccard: 0.709
+predict_set_size / true_set_size:  0.7912457912457912
+[2,   936] loss: 0.010, jaccard: 0.656
+predict_set_size / true_set_size:  0.8758620689655172
+[2,  1092] loss: 0.010, jaccard: 0.709
+predict_set_size / true_set_size:  0.9230769230769231
+[2,  1248] loss: 0.010, jaccard: 0.701
+predict_set_size / true_set_size:  0.8885017421602788
+[2,  1404] loss: 0.009, jaccard: 0.675
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 263, 263], [17, 263, 263]]
+predict_set_size / true_set_size:  0.9634428588023984
+Jaccard: 0.7064468171194114
+lr: 0.00075 lr2: 0.0
+predict_set_size / true_set_size:  0.9566563467492261
+[3,   156] loss: 0.009, jaccard: 0.684
+predict_set_size / true_set_size:  0.9926739926739927
+[3,   312] loss: 0.009, jaccard: 0.703
+predict_set_size / true_set_size:  0.9201388888888888
+[3,   468] loss: 0.009, jaccard: 0.714
+predict_set_size / true_set_size:  0.980327868852459
+[3,   624] loss: 0.009, jaccard: 0.737
+predict_set_size / true_set_size:  1.013793103448276
+[3,   780] loss: 0.009, jaccard: 0.731
+predict_set_size / true_set_size:  0.9097222222222222
+[3,   936] loss: 0.009, jaccard: 0.750
+predict_set_size / true_set_size:  0.9661016949152542
+[3,  1092] loss: 0.008, jaccard: 0.752
+predict_set_size / true_set_size:  0.910958904109589
+[3,  1248] loss: 0.008, jaccard: 0.760
+predict_set_size / true_set_size:  0.898360655737705
+[3,  1404] loss: 0.008, jaccard: 0.735
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [63, 263, 263]]
+predict_set_size / true_set_size:  0.9510933185591607
+Jaccard: 0.7388129862274075
+lr: 0.0005625000000000001 lr2: 0.0002
+predict_set_size / true_set_size:  1.0072727272727273
+[4,   156] loss: 0.008, jaccard: 0.792
+predict_set_size / true_set_size:  0.9225589225589226
+[4,   312] loss: 0.008, jaccard: 0.756
+predict_set_size / true_set_size:  0.9026845637583892
+[4,   468] loss: 0.008, jaccard: 0.742
+predict_set_size / true_set_size:  1.0097087378640777
+[4,   624] loss: 0.008, jaccard: 0.798
+predict_set_size / true_set_size:  0.9313725490196079
+[4,   780] loss: 0.008, jaccard: 0.784
+predict_set_size / true_set_size:  0.9784172661870504
+[4,   936] loss: 0.008, jaccard: 0.763
+predict_set_size / true_set_size:  0.9966666666666667
+[4,  1092] loss: 0.008, jaccard: 0.810
+predict_set_size / true_set_size:  0.9719298245614035
+[4,  1248] loss: 0.007, jaccard: 0.755
+predict_set_size / true_set_size:  0.9389067524115756
+[4,  1404] loss: 0.007, jaccard: 0.790
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [63, 263, 263]]
+predict_set_size / true_set_size:  0.954265595539153
+Jaccard: 0.7585098007316604
+lr: 0.00042187500000000005 lr2: 0.00015000000000000001
+predict_set_size / true_set_size:  0.9438943894389439
+[5,   156] loss: 0.007, jaccard: 0.789
+predict_set_size / true_set_size:  1.033210332103321
+[5,   312] loss: 0.007, jaccard: 0.814
+predict_set_size / true_set_size:  0.9370860927152318
+[5,   468] loss: 0.007, jaccard: 0.789
+predict_set_size / true_set_size:  0.9707792207792207
+[5,   624] loss: 0.007, jaccard: 0.793
+predict_set_size / true_set_size:  1.0326797385620916
+[5,   780] loss: 0.007, jaccard: 0.839
+predict_set_size / true_set_size:  0.9583333333333334
+[5,   936] loss: 0.007, jaccard: 0.797
+predict_set_size / true_set_size:  0.9228295819935691
+[5,  1092] loss: 0.007, jaccard: 0.787
+predict_set_size / true_set_size:  1.0260223048327137
+[5,  1248] loss: 0.007, jaccard: 0.838
+predict_set_size / true_set_size:  0.96
+[5,  1404] loss: 0.007, jaccard: 0.812
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9677500067019936
+Jaccard: 0.7715465484168407
+lr: 0.00031640625000000006 lr2: 0.00011250000000000001
+predict_set_size / true_set_size:  0.935374149659864
+[6,   156] loss: 0.006, jaccard: 0.789
+predict_set_size / true_set_size:  0.9686411149825784
+[6,   312] loss: 0.006, jaccard: 0.776
+predict_set_size / true_set_size:  1.029739776951673
+[6,   468] loss: 0.006, jaccard: 0.782
+predict_set_size / true_set_size:  1.0323624595469256
+[6,   624] loss: 0.006, jaccard: 0.820
+predict_set_size / true_set_size:  0.9891696750902527
+[6,   780] loss: 0.006, jaccard: 0.810
+predict_set_size / true_set_size:  0.9421221864951769
+[6,   936] loss: 0.006, jaccard: 0.804
+predict_set_size / true_set_size:  0.9554140127388535
+[6,  1092] loss: 0.006, jaccard: 0.794
+predict_set_size / true_set_size:  0.954248366013072
+[6,  1248] loss: 0.006, jaccard: 0.824
+predict_set_size / true_set_size:  0.9928057553956835
+[6,  1404] loss: 0.006, jaccard: 0.770
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9512362944230477
+Jaccard: 0.7770135583744743
+lr: 0.00023730468750000005 lr2: 8.4375e-05
+predict_set_size / true_set_size:  0.9671532846715328
+[7,   156] loss: 0.006, jaccard: 0.844
+predict_set_size / true_set_size:  0.920265780730897
+[7,   312] loss: 0.006, jaccard: 0.874
+predict_set_size / true_set_size:  0.9963503649635036
+[7,   468] loss: 0.006, jaccard: 0.820
+predict_set_size / true_set_size:  1.0070422535211268
+[7,   624] loss: 0.006, jaccard: 0.820
+predict_set_size / true_set_size:  0.9842767295597484
+[7,   780] loss: 0.006, jaccard: 0.841
+predict_set_size / true_set_size:  0.8912280701754386
+[7,   936] loss: 0.006, jaccard: 0.823
+predict_set_size / true_set_size:  0.9936507936507937
+[7,  1092] loss: 0.006, jaccard: 0.827
+predict_set_size / true_set_size:  0.9409937888198758
+[7,  1248] loss: 0.006, jaccard: 0.788
+predict_set_size / true_set_size:  1.0133779264214047
+[7,  1404] loss: 0.006, jaccard: 0.793
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9608961012269116
+Jaccard: 0.781472153288334
+lr: 0.00017797851562500002 lr2: 6.328125e-05
+predict_set_size / true_set_size:  0.9761904761904762
+[8,   156] loss: 0.006, jaccard: 0.818
+predict_set_size / true_set_size:  0.9525423728813559
+[8,   312] loss: 0.006, jaccard: 0.866
+predict_set_size / true_set_size:  0.9387096774193548
+[8,   468] loss: 0.006, jaccard: 0.803
+predict_set_size / true_set_size:  1.013840830449827
+[8,   624] loss: 0.006, jaccard: 0.845
+predict_set_size / true_set_size:  0.9375
+[8,   780] loss: 0.006, jaccard: 0.800
+predict_set_size / true_set_size:  1.0
+[8,   936] loss: 0.006, jaccard: 0.835
+predict_set_size / true_set_size:  0.9858657243816255
+[8,  1092] loss: 0.006, jaccard: 0.854
+predict_set_size / true_set_size:  0.945054945054945
+[8,  1248] loss: 0.006, jaccard: 0.792
+predict_set_size / true_set_size:  0.9834437086092715
+[8,  1404] loss: 0.006, jaccard: 0.838
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9800548669877667
+Jaccard: 0.7846410568384884
+lr: 0.00013348388671875002 lr2: 4.74609375e-05
+predict_set_size / true_set_size:  0.9446254071661238
+[9,   156] loss: 0.006, jaccard: 0.791
+predict_set_size / true_set_size:  1.003717472118959
+[9,   312] loss: 0.006, jaccard: 0.871
+predict_set_size / true_set_size:  0.9802631578947368
+[9,   468] loss: 0.005, jaccard: 0.877
+predict_set_size / true_set_size:  0.9844236760124611
+[9,   624] loss: 0.006, jaccard: 0.873
+predict_set_size / true_set_size:  0.9933110367892977
+[9,   780] loss: 0.006, jaccard: 0.812
+predict_set_size / true_set_size:  0.9932885906040269
+[9,   936] loss: 0.006, jaccard: 0.836
+predict_set_size / true_set_size:  1.0136518771331058
+[9,  1092] loss: 0.006, jaccard: 0.839
+predict_set_size / true_set_size:  0.9333333333333333
+[9,  1248] loss: 0.005, jaccard: 0.864
+predict_set_size / true_set_size:  0.9230769230769231
+[9,  1404] loss: 0.006, jaccard: 0.852
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9600918619925474
+Jaccard: 0.7834968625124717
+lr: 0.00010011291503906251 lr2: 3.5595703124999996e-05
+predict_set_size / true_set_size:  0.9516616314199395
+[10,   156] loss: 0.005, jaccard: 0.832
+predict_set_size / true_set_size:  1.0035087719298246
+[10,   312] loss: 0.005, jaccard: 0.822
+predict_set_size / true_set_size:  0.9383116883116883
+[10,   468] loss: 0.005, jaccard: 0.820
+predict_set_size / true_set_size:  0.9379084967320261
+[10,   624] loss: 0.005, jaccard: 0.827
+predict_set_size / true_set_size:  0.9936908517350158
+[10,   780] loss: 0.005, jaccard: 0.827
+predict_set_size / true_set_size:  1.071969696969697
+[10,   936] loss: 0.005, jaccard: 0.816
+predict_set_size / true_set_size:  0.9794520547945206
+[10,  1092] loss: 0.005, jaccard: 0.796
+predict_set_size / true_set_size:  0.9618055555555556
+[10,  1248] loss: 0.005, jaccard: 0.824
+predict_set_size / true_set_size:  0.98
+[10,  1404] loss: 0.005, jaccard: 0.899
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9637020025556936
+Jaccard: 0.7853107301263373
+lr: 7.508468627929689e-05 lr2: 2.6696777343749997e-05
+predict_set_size / true_set_size:  0.9568345323741008
+[11,   156] loss: 0.005, jaccard: 0.819
+predict_set_size / true_set_size:  0.9689655172413794
+[11,   312] loss: 0.005, jaccard: 0.872
+predict_set_size / true_set_size:  0.9568106312292359
+[11,   468] loss: 0.005, jaccard: 0.818
+predict_set_size / true_set_size:  1.0260586319218241
+[11,   624] loss: 0.005, jaccard: 0.844
+predict_set_size / true_set_size:  1.0190114068441065
+[11,   780] loss: 0.005, jaccard: 0.846
+predict_set_size / true_set_size:  0.9899665551839465
+[11,   936] loss: 0.005, jaccard: 0.865
+predict_set_size / true_set_size:  0.9825783972125436
+[11,  1092] loss: 0.005, jaccard: 0.795
+predict_set_size / true_set_size:  0.9686411149825784
+[11,  1248] loss: 0.005, jaccard: 0.865
+predict_set_size / true_set_size:  0.9828178694158075
+[11,  1404] loss: 0.005, jaccard: 0.846
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9609407811843763
+Jaccard: 0.7846947447432575
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9443109010160222
+Jaccard: 0.782703610430732
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9799297631068655
+Jaccard: 0.7864807621980254
+lr: 5.631351470947266e-05 lr2: 2.0022583007812497e-05
+predict_set_size / true_set_size:  0.9646643109540636
+[12,   156] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  0.987012987012987
+[12,   312] loss: 0.005, jaccard: 0.878
+predict_set_size / true_set_size:  0.9875
+[12,   468] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  0.9816849816849816
+[12,   624] loss: 0.005, jaccard: 0.820
+predict_set_size / true_set_size:  0.9757785467128027
+[12,   780] loss: 0.005, jaccard: 0.844
+predict_set_size / true_set_size:  0.9522292993630573
+[12,   936] loss: 0.005, jaccard: 0.844
+predict_set_size / true_set_size:  1.0102739726027397
+[12,  1092] loss: 0.005, jaccard: 0.857
+predict_set_size / true_set_size:  0.982078853046595
+[12,  1248] loss: 0.005, jaccard: 0.839
+predict_set_size / true_set_size:  0.9537953795379538
+[12,  1404] loss: 0.005, jaccard: 0.852
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9880615153654374
+Jaccard: 0.7880518452033912
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9512899103720053
+Jaccard: 0.7834746731277824
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9880168354079727
+Jaccard: 0.786567583379079
+lr: 4.22351360321045e-05 lr2: 1.5016937255859373e-05
+predict_set_size / true_set_size:  1.0278745644599303
+[13,   156] loss: 0.005, jaccard: 0.839
+predict_set_size / true_set_size:  1.0133333333333334
+[13,   312] loss: 0.005, jaccard: 0.869
+predict_set_size / true_set_size:  1.0444444444444445
+[13,   468] loss: 0.005, jaccard: 0.872
+predict_set_size / true_set_size:  1.0282131661442007
+[13,   624] loss: 0.005, jaccard: 0.836
+predict_set_size / true_set_size:  1.0034843205574913
+[13,   780] loss: 0.005, jaccard: 0.850
+predict_set_size / true_set_size:  1.0068493150684932
+[13,   936] loss: 0.005, jaccard: 0.845
+predict_set_size / true_set_size:  0.9489795918367347
+[13,  1092] loss: 0.005, jaccard: 0.848
+predict_set_size / true_set_size:  0.9963369963369964
+[13,  1248] loss: 0.005, jaccard: 0.830
+predict_set_size / true_set_size:  0.946875
+[13,  1404] loss: 0.005, jaccard: 0.858
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9806625144092863
+Jaccard: 0.7860070676795003
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9458121475868355
+Jaccard: 0.7835953452584055
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.980698258375258
+Jaccard: 0.7866750740365709
+lr: 3.167635202407837e-05 lr2: 1.126270294189453e-05
+predict_set_size / true_set_size:  0.9967105263157895
+[14,   156] loss: 0.005, jaccard: 0.841
+predict_set_size / true_set_size:  0.9805194805194806
+[14,   312] loss: 0.005, jaccard: 0.851
+predict_set_size / true_set_size:  1.0103448275862068
+[14,   468] loss: 0.005, jaccard: 0.859
+predict_set_size / true_set_size:  0.9857142857142858
+[14,   624] loss: 0.005, jaccard: 0.872
+predict_set_size / true_set_size:  0.9770491803278688
+[14,   780] loss: 0.005, jaccard: 0.867
+predict_set_size / true_set_size:  0.972972972972973
+[14,   936] loss: 0.005, jaccard: 0.848
+predict_set_size / true_set_size:  0.9758308157099698
+[14,  1092] loss: 0.005, jaccard: 0.824
+predict_set_size / true_set_size:  1.029520295202952
+[14,  1248] loss: 0.005, jaccard: 0.850
+predict_set_size / true_set_size:  1.0174216027874565
+[14,  1404] loss: 0.005, jaccard: 0.854
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9771327977695765
+Jaccard: 0.7863674392523706
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9413262798573816
+Jaccard: 0.7834944623255116
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9768021660843379
+Jaccard: 0.7872966176762868
+lr: 2.3757264018058778e-05 lr2: 1e-05
+predict_set_size / true_set_size:  0.9479166666666666
+[15,   156] loss: 0.005, jaccard: 0.856
+predict_set_size / true_set_size:  0.9703703703703703
+[15,   312] loss: 0.005, jaccard: 0.842
+predict_set_size / true_set_size:  1.006825938566553
+[15,   468] loss: 0.005, jaccard: 0.822
+predict_set_size / true_set_size:  1.0174216027874565
+[15,   624] loss: 0.005, jaccard: 0.872
+predict_set_size / true_set_size:  0.9966329966329966
+[15,   780] loss: 0.005, jaccard: 0.847
+predict_set_size / true_set_size:  0.9894736842105263
+[15,   936] loss: 0.005, jaccard: 0.840
+predict_set_size / true_set_size:  0.9771986970684039
+[15,  1092] loss: 0.005, jaccard: 0.847
+predict_set_size / true_set_size:  0.9749216300940439
+[15,  1248] loss: 0.005, jaccard: 0.886
+predict_set_size / true_set_size:  1.0235690235690236
+[15,  1404] loss: 0.005, jaccard: 0.814
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.991323152260359
+Jaccard: 0.7874667839683291
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9564102334974577
+Jaccard: 0.784438551010985
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9897593537490952
+Jaccard: 0.7879540517556881
+lr: 1.7817948013544083e-05 lr2: 1e-05
+predict_set_size / true_set_size:  0.9925373134328358
+[16,   156] loss: 0.005, jaccard: 0.872
+predict_set_size / true_set_size:  1.0065359477124183
+[16,   312] loss: 0.005, jaccard: 0.823
+predict_set_size / true_set_size:  0.9569230769230769
+[16,   468] loss: 0.005, jaccard: 0.836
+predict_set_size / true_set_size:  0.9927536231884058
+[16,   624] loss: 0.005, jaccard: 0.871
+predict_set_size / true_set_size:  0.9577464788732394
+[16,   780] loss: 0.005, jaccard: 0.873
+predict_set_size / true_set_size:  1.0171821305841924
+[16,   936] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  1.0095541401273886
+[16,  1092] loss: 0.005, jaccard: 0.842
+predict_set_size / true_set_size:  0.9965870307167235
+[16,  1248] loss: 0.005, jaccard: 0.868
+predict_set_size / true_set_size:  0.9935483870967742
+[16,  1404] loss: 0.005, jaccard: 0.830
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.985175190113219
+Jaccard: 0.7880002866711532
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9494312241414746
+Jaccard: 0.7850336709586558
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9852019980876978
+Jaccard: 0.7879593679468506
+lr: 1.3363461010158061e-05 lr2: 1e-05
+predict_set_size / true_set_size:  1.0072463768115942
+[17,   156] loss: 0.005, jaccard: 0.820
+predict_set_size / true_set_size:  0.9565217391304348
+[17,   312] loss: 0.005, jaccard: 0.871
+predict_set_size / true_set_size:  1.013986013986014
+[17,   468] loss: 0.005, jaccard: 0.822
+predict_set_size / true_set_size:  0.939297124600639
+[17,   624] loss: 0.005, jaccard: 0.835
+predict_set_size / true_set_size:  1.006993006993007
+[17,   780] loss: 0.005, jaccard: 0.835
+predict_set_size / true_set_size:  1.006578947368421
+[17,   936] loss: 0.005, jaccard: 0.842
+predict_set_size / true_set_size:  1.0410958904109588
+[17,  1092] loss: 0.005, jaccard: 0.880
+predict_set_size / true_set_size:  1.003154574132492
+[17,  1248] loss: 0.005, jaccard: 0.822
+predict_set_size / true_set_size:  0.9702970297029703
+[17,  1404] loss: 0.005, jaccard: 0.839
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9844245668278124
+Jaccard: 0.7876791594400785
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9489844245668279
+Jaccard: 0.7832370710886182
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9837454314743492
+Jaccard: 0.7880086357873199
+lr: 1.0022595757618546e-05 lr2: 1e-05
+predict_set_size / true_set_size:  1.0365448504983388
+[18,   156] loss: 0.005, jaccard: 0.889
+predict_set_size / true_set_size:  1.0158227848101267
+[18,   312] loss: 0.005, jaccard: 0.852
+predict_set_size / true_set_size:  1.0183823529411764
+[18,   468] loss: 0.005, jaccard: 0.842
+predict_set_size / true_set_size:  0.9748201438848921
+[18,   624] loss: 0.005, jaccard: 0.845
+predict_set_size / true_set_size:  1.0096463022508038
+[18,   780] loss: 0.005, jaccard: 0.880
+predict_set_size / true_set_size:  0.9964028776978417
+[18,   936] loss: 0.005, jaccard: 0.854
+predict_set_size / true_set_size:  0.9736842105263158
+[18,  1092] loss: 0.005, jaccard: 0.851
+predict_set_size / true_set_size:  1.0106382978723405
+[18,  1248] loss: 0.005, jaccard: 0.873
+predict_set_size / true_set_size:  1.0
+[18,  1404] loss: 0.005, jaccard: 0.862
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9815024976096223
+Jaccard: 0.7877750240287079
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9470274424298748
+Jaccard: 0.7839093171874268
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9814667536436505
+Jaccard: 0.7875308152121407
+lr: 7.51694681821391e-06 lr2: 1e-05
+predict_set_size / true_set_size:  0.9696969696969697
+[19,   156] loss: 0.005, jaccard: 0.886
+predict_set_size / true_set_size:  0.9934426229508196
+[19,   312] loss: 0.005, jaccard: 0.887
+predict_set_size / true_set_size:  1.0171232876712328
+[19,   468] loss: 0.005, jaccard: 0.871
+predict_set_size / true_set_size:  1.0390625
+[19,   624] loss: 0.005, jaccard: 0.819
+predict_set_size / true_set_size:  0.9638989169675091
+[19,   780] loss: 0.005, jaccard: 0.845
+predict_set_size / true_set_size:  1.0227272727272727
+[19,   936] loss: 0.005, jaccard: 0.808
+predict_set_size / true_set_size:  0.9852507374631269
+[19,  1092] loss: 0.005, jaccard: 0.809
+predict_set_size / true_set_size:  0.9864864864864865
+[19,  1248] loss: 0.005, jaccard: 0.862
+predict_set_size / true_set_size:  1.0135593220338983
+[19,  1404] loss: 0.005, jaccard: 0.829
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9892053222765332
+Jaccard: 0.7885432500156834
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9550251548160527
+Jaccard: 0.7854178679324908
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9901436013832915
+Jaccard: 0.7881770226301302
+lr: 5.637710113660432e-06 lr2: 1e-05
+predict_set_size / true_set_size:  1.0
+[20,   156] loss: 0.005, jaccard: 0.843
+predict_set_size / true_set_size:  0.9857651245551602
+[20,   312] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  1.027681660899654
+[20,   468] loss: 0.005, jaccard: 0.887
+predict_set_size / true_set_size:  1.0227272727272727
+[20,   624] loss: 0.005, jaccard: 0.857
+predict_set_size / true_set_size:  0.9964285714285714
+[20,   780] loss: 0.005, jaccard: 0.858
+predict_set_size / true_set_size:  0.9964912280701754
+[20,   936] loss: 0.005, jaccard: 0.860
+predict_set_size / true_set_size:  0.9838709677419355
+[20,  1092] loss: 0.005, jaccard: 0.880
+predict_set_size / true_set_size:  0.934984520123839
+[20,  1248] loss: 0.005, jaccard: 0.847
+predict_set_size / true_set_size:  1.008
+[20,  1404] loss: 0.005, jaccard: 0.844
+predicting...
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9812433538563271
+Jaccard: 0.7871570645211079
+max prob: 0.53
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.9462142672040176
+Jaccard: 0.7841645133588254
+max prob: 0.47
+[[51, 52, 63, 66, 263], [51, 52, 60, 63, 66, 263], [17, 263]]
+[[51, 52, 66, 263, 263], [51, 52, 60, 66, 263, 263], [17, 63, 263, 263]]
+predict_set_size / true_set_size:  0.981538241575594
+Jaccard: 0.7878734565568285
+not save
+loading data...
+max sentence length:  42583
+total vocab size 691360
+load word2index
+trainset size: 96000
+validset size: 24000
+data loaded
+config vocab size: 194170
+Loading pretrain embedding...
+training...
+lr: 0.001 lr2: 0.0
+predict_set_size / true_set_size:  0.7185185185185186
+[1,   156] loss: 0.041, jaccard: 0.342
+predict_set_size / true_set_size:  0.8285714285714286
+[1,   312] loss: 0.020, jaccard: 0.466
+predict_set_size / true_set_size:  0.7475083056478405
+[1,   468] loss: 0.018, jaccard: 0.565
+predict_set_size / true_set_size:  0.9046153846153846
+[1,   624] loss: 0.016, jaccard: 0.541
+predict_set_size / true_set_size:  0.8581314878892734
+[1,   780] loss: 0.015, jaccard: 0.589
+predict_set_size / true_set_size:  0.9117647058823529
+[1,   936] loss: 0.014, jaccard: 0.633
+predict_set_size / true_set_size:  0.8650306748466258
+[1,  1092] loss: 0.013, jaccard: 0.599
+predict_set_size / true_set_size:  0.9259259259259259
+[1,  1248] loss: 0.012, jaccard: 0.609
+predict_set_size / true_set_size:  0.9238410596026491
+[1,  1404] loss: 0.012, jaccard: 0.613
+predict_set_size / true_set_size:  0.9037800687285223
+[1,  1560] loss: 0.012, jaccard: 0.638
+predict_set_size / true_set_size:  0.8051948051948052
+[1,  1716] loss: 0.011, jaccard: 0.683
+predict_set_size / true_set_size:  0.9058441558441559
+[1,  1872] loss: 0.011, jaccard: 0.655
+lr: 0.001 lr2: 0.0
+predict_set_size / true_set_size:  0.8707692307692307
+[2,   156] loss: 0.010, jaccard: 0.690
+predict_set_size / true_set_size:  0.9890510948905109
+[2,   312] loss: 0.010, jaccard: 0.672
+predict_set_size / true_set_size:  1.0704225352112675
+[2,   468] loss: 0.010, jaccard: 0.724
+predict_set_size / true_set_size:  0.8501742160278746
+[2,   624] loss: 0.010, jaccard: 0.695
+predict_set_size / true_set_size:  0.8705035971223022
+[2,   780] loss: 0.009, jaccard: 0.679
+predict_set_size / true_set_size:  1.047970479704797
+[2,   936] loss: 0.009, jaccard: 0.690
+predict_set_size / true_set_size:  1.0258302583025831
+[2,  1092] loss: 0.009, jaccard: 0.744
+predict_set_size / true_set_size:  0.9782608695652174
+[2,  1248] loss: 0.009, jaccard: 0.724
+predict_set_size / true_set_size:  0.9689655172413794
+[2,  1404] loss: 0.009, jaccard: 0.723
+predict_set_size / true_set_size:  1.0173611111111112
+[2,  1560] loss: 0.009, jaccard: 0.740
+predict_set_size / true_set_size:  0.8471760797342193
+[2,  1716] loss: 0.009, jaccard: 0.681
+predict_set_size / true_set_size:  0.9709677419354839
+[2,  1872] loss: 0.009, jaccard: 0.738
+lr: 0.00075 lr2: 0.0
+predict_set_size / true_set_size:  0.993103448275862
+[3,   156] loss: 0.008, jaccard: 0.742
+predict_set_size / true_set_size:  0.9511400651465798
+[3,   312] loss: 0.008, jaccard: 0.729
+predict_set_size / true_set_size:  0.9625
+[3,   468] loss: 0.008, jaccard: 0.780
+predict_set_size / true_set_size:  0.9134948096885813
+[3,   624] loss: 0.008, jaccard: 0.745
+predict_set_size / true_set_size:  1.0468227424749164
+[3,   780] loss: 0.008, jaccard: 0.738
+predict_set_size / true_set_size:  0.9120521172638436
+[3,   936] loss: 0.008, jaccard: 0.734
+predict_set_size / true_set_size:  0.9652777777777778
+[3,  1092] loss: 0.008, jaccard: 0.754
+predict_set_size / true_set_size:  0.9665551839464883
+[3,  1248] loss: 0.008, jaccard: 0.781
+predict_set_size / true_set_size:  1.0512820512820513
+[3,  1404] loss: 0.008, jaccard: 0.767
+predict_set_size / true_set_size:  0.9543973941368078
+[3,  1560] loss: 0.008, jaccard: 0.781
+predict_set_size / true_set_size:  0.9352750809061489
+[3,  1716] loss: 0.008, jaccard: 0.759
+predict_set_size / true_set_size:  0.975177304964539
+[3,  1872] loss: 0.008, jaccard: 0.795
+lr: 0.0005625000000000001 lr2: 0.0002
+predict_set_size / true_set_size:  1.0106382978723405
+[4,   156] loss: 0.007, jaccard: 0.810
+predict_set_size / true_set_size:  0.9868421052631579
+[4,   312] loss: 0.007, jaccard: 0.782
+predict_set_size / true_set_size:  0.9178571428571428
+[4,   468] loss: 0.007, jaccard: 0.792
+predict_set_size / true_set_size:  1.0177304964539007
+[4,   624] loss: 0.007, jaccard: 0.746
+predict_set_size / true_set_size:  1.0110294117647058
+[4,   780] loss: 0.007, jaccard: 0.812
+predict_set_size / true_set_size:  0.8520900321543409
+[4,   936] loss: 0.007, jaccard: 0.761
+predict_set_size / true_set_size:  0.9763513513513513
+[4,  1092] loss: 0.007, jaccard: 0.801
+predict_set_size / true_set_size:  0.8980263157894737
+[4,  1248] loss: 0.007, jaccard: 0.781
+predict_set_size / true_set_size:  0.9875776397515528
+[4,  1404] loss: 0.007, jaccard: 0.796
+predict_set_size / true_set_size:  0.9889705882352942
+[4,  1560] loss: 0.007, jaccard: 0.821
+predict_set_size / true_set_size:  0.9840764331210191
+[4,  1716] loss: 0.007, jaccard: 0.775
+predict_set_size / true_set_size:  0.889273356401384
+[4,  1872] loss: 0.007, jaccard: 0.805
+lr: 0.00042187500000000005 lr2: 0.00015000000000000001
+predict_set_size / true_set_size:  0.9629629629629629
+[5,   156] loss: 0.007, jaccard: 0.850
+predict_set_size / true_set_size:  0.9645390070921985
+[5,   312] loss: 0.007, jaccard: 0.744
+predict_set_size / true_set_size:  0.9752321981424149
+[5,   468] loss: 0.007, jaccard: 0.799
+predict_set_size / true_set_size:  0.9097222222222222
+[5,   624] loss: 0.006, jaccard: 0.783
+predict_set_size / true_set_size:  0.9194630872483222
+[5,   780] loss: 0.007, jaccard: 0.808
+predict_set_size / true_set_size:  1.0
+[5,   936] loss: 0.006, jaccard: 0.799
+predict_set_size / true_set_size:  0.9705882352941176
+[5,  1092] loss: 0.007, jaccard: 0.856
+predict_set_size / true_set_size:  1.0
+[5,  1248] loss: 0.006, jaccard: 0.829
+predict_set_size / true_set_size:  0.9816176470588235
+[5,  1404] loss: 0.006, jaccard: 0.783
+predict_set_size / true_set_size:  1.0
+[5,  1560] loss: 0.006, jaccard: 0.787
+predict_set_size / true_set_size:  1.0384615384615385
+[5,  1716] loss: 0.006, jaccard: 0.810
+predict_set_size / true_set_size:  0.9527027027027027
+[5,  1872] loss: 0.006, jaccard: 0.817
+lr: 0.00031640625000000006 lr2: 0.00011250000000000001
+predict_set_size / true_set_size:  0.9863481228668942
+[6,   156] loss: 0.006, jaccard: 0.816
+predict_set_size / true_set_size:  0.95
+[6,   312] loss: 0.006, jaccard: 0.784
+predict_set_size / true_set_size:  0.9358108108108109
+[6,   468] loss: 0.006, jaccard: 0.807
+predict_set_size / true_set_size:  0.9565217391304348
+[6,   624] loss: 0.006, jaccard: 0.829
+predict_set_size / true_set_size:  0.9594594594594594
+[6,   780] loss: 0.006, jaccard: 0.842
+predict_set_size / true_set_size:  0.9532710280373832
+[6,   936] loss: 0.006, jaccard: 0.813
+predict_set_size / true_set_size:  0.9728813559322034
+[6,  1092] loss: 0.006, jaccard: 0.869
+predict_set_size / true_set_size:  0.9932659932659933
+[6,  1248] loss: 0.006, jaccard: 0.836
+predict_set_size / true_set_size:  1.0204778156996588
+[6,  1404] loss: 0.006, jaccard: 0.815
+predict_set_size / true_set_size:  1.0
+[6,  1560] loss: 0.006, jaccard: 0.847
+predict_set_size / true_set_size:  0.993127147766323
+[6,  1716] loss: 0.006, jaccard: 0.854
+predict_set_size / true_set_size:  0.9594594594594594
+[6,  1872] loss: 0.006, jaccard: 0.858
+lr: 0.00023730468750000005 lr2: 8.4375e-05
+predict_set_size / true_set_size:  1.026143790849673
+[7,   156] loss: 0.006, jaccard: 0.818
+predict_set_size / true_set_size:  0.9446366782006921
+[7,   312] loss: 0.006, jaccard: 0.843
+predict_set_size / true_set_size:  0.9559748427672956
+[7,   468] loss: 0.006, jaccard: 0.852
+predict_set_size / true_set_size:  1.0068493150684932
+[7,   624] loss: 0.006, jaccard: 0.812
+predict_set_size / true_set_size:  0.9902912621359223
+[7,   780] loss: 0.006, jaccard: 0.814
+predict_set_size / true_set_size:  0.966996699669967
+[7,   936] loss: 0.006, jaccard: 0.822
+predict_set_size / true_set_size:  1.0111940298507462
+[7,  1092] loss: 0.006, jaccard: 0.839
+predict_set_size / true_set_size:  1.009433962264151
+[7,  1248] loss: 0.006, jaccard: 0.821
+predict_set_size / true_set_size:  0.9363057324840764
+[7,  1404] loss: 0.006, jaccard: 0.802
+predict_set_size / true_set_size:  0.9930795847750865
+[7,  1560] loss: 0.006, jaccard: 0.818
+predict_set_size / true_set_size:  0.9672131147540983
+[7,  1716] loss: 0.006, jaccard: 0.833
+predict_set_size / true_set_size:  0.9809523809523809
+[7,  1872] loss: 0.006, jaccard: 0.849
+lr: 0.00017797851562500002 lr2: 6.328125e-05
+predict_set_size / true_set_size:  0.9802631578947368
+[8,   156] loss: 0.005, jaccard: 0.796
+predict_set_size / true_set_size:  0.9828178694158075
+[8,   312] loss: 0.005, jaccard: 0.827
+predict_set_size / true_set_size:  0.9798657718120806
+[8,   468] loss: 0.005, jaccard: 0.792
+predict_set_size / true_set_size:  1.0064308681672025
+[8,   624] loss: 0.005, jaccard: 0.811
+predict_set_size / true_set_size:  0.9726962457337884
+[8,   780] loss: 0.005, jaccard: 0.806
+predict_set_size / true_set_size:  1.0185185185185186
+[8,   936] loss: 0.005, jaccard: 0.830
+predict_set_size / true_set_size:  0.9902912621359223
+[8,  1092] loss: 0.005, jaccard: 0.868
+predict_set_size / true_set_size:  1.017667844522968
+[8,  1248] loss: 0.005, jaccard: 0.831
+predict_set_size / true_set_size:  1.0181159420289856
+[8,  1404] loss: 0.005, jaccard: 0.871
+predict_set_size / true_set_size:  1.0070671378091873
+[8,  1560] loss: 0.006, jaccard: 0.833
+predict_set_size / true_set_size:  0.9702970297029703
+[8,  1716] loss: 0.005, jaccard: 0.826
+predict_set_size / true_set_size:  1.025236593059937
+[8,  1872] loss: 0.005, jaccard: 0.818
+lr: 0.00013348388671875002 lr2: 4.74609375e-05
+predict_set_size / true_set_size:  1.039568345323741
+[9,   156] loss: 0.005, jaccard: 0.864
+predict_set_size / true_set_size:  0.9935897435897436
+[9,   312] loss: 0.005, jaccard: 0.806
+predict_set_size / true_set_size:  0.940625
+[9,   468] loss: 0.005, jaccard: 0.827
+predict_set_size / true_set_size:  1.0036496350364963
+[9,   624] loss: 0.005, jaccard: 0.836
+predict_set_size / true_set_size:  1.0
+[9,   780] loss: 0.005, jaccard: 0.881
+predict_set_size / true_set_size:  0.950530035335689
+[9,   936] loss: 0.005, jaccard: 0.863
+predict_set_size / true_set_size:  1.0204081632653061
+[9,  1092] loss: 0.005, jaccard: 0.823
+predict_set_size / true_set_size:  0.9694915254237289
+[9,  1248] loss: 0.005, jaccard: 0.840
+predict_set_size / true_set_size:  1.0094637223974763
+[9,  1404] loss: 0.005, jaccard: 0.846
+predict_set_size / true_set_size:  1.0634328358208955
+[9,  1560] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  0.958041958041958
+[9,  1716] loss: 0.005, jaccard: 0.841
+predict_set_size / true_set_size:  0.9966777408637874
+[9,  1872] loss: 0.005, jaccard: 0.874
+lr: 0.00010011291503906251 lr2: 3.5595703124999996e-05
+predict_set_size / true_set_size:  1.0234113712374582
+[10,   156] loss: 0.005, jaccard: 0.883
+predict_set_size / true_set_size:  0.9550173010380623
+[10,   312] loss: 0.005, jaccard: 0.838
+predict_set_size / true_set_size:  0.9929078014184397
+[10,   468] loss: 0.005, jaccard: 0.851
+predict_set_size / true_set_size:  0.9425675675675675
+[10,   624] loss: 0.005, jaccard: 0.822
+predict_set_size / true_set_size:  1.0145985401459854
+[10,   780] loss: 0.005, jaccard: 0.823
+predict_set_size / true_set_size:  0.980327868852459
+[10,   936] loss: 0.005, jaccard: 0.838
+predict_set_size / true_set_size:  0.9710610932475884
+[10,  1092] loss: 0.005, jaccard: 0.871
+predict_set_size / true_set_size:  1.0206185567010309
+[10,  1248] loss: 0.005, jaccard: 0.844
+predict_set_size / true_set_size:  0.9895833333333334
+[10,  1404] loss: 0.005, jaccard: 0.848
+predict_set_size / true_set_size:  1.0413793103448277
+[10,  1560] loss: 0.005, jaccard: 0.842
+predict_set_size / true_set_size:  0.9779411764705882
+[10,  1716] loss: 0.005, jaccard: 0.859
+predict_set_size / true_set_size:  0.9863945578231292
+[10,  1872] loss: 0.005, jaccard: 0.843
+lr: 7.508468627929689e-05 lr2: 2.6696777343749997e-05
+predict_set_size / true_set_size:  0.9752650176678446
+[11,   156] loss: 0.005, jaccard: 0.843
+predict_set_size / true_set_size:  0.9901960784313726
+[11,   312] loss: 0.005, jaccard: 0.829
+predict_set_size / true_set_size:  1.0136518771331058
+[11,   468] loss: 0.005, jaccard: 0.834
+predict_set_size / true_set_size:  0.9867549668874173
+[11,   624] loss: 0.005, jaccard: 0.829
+predict_set_size / true_set_size:  0.9927272727272727
+[11,   780] loss: 0.005, jaccard: 0.824
+predict_set_size / true_set_size:  1.006872852233677
+[11,   936] loss: 0.005, jaccard: 0.863
+predict_set_size / true_set_size:  0.9639344262295082
+[11,  1092] loss: 0.005, jaccard: 0.859
+predict_set_size / true_set_size:  0.972972972972973
+[11,  1248] loss: 0.005, jaccard: 0.859
+predict_set_size / true_set_size:  0.9540636042402827
+[11,  1404] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  0.9621993127147767
+[11,  1560] loss: 0.005, jaccard: 0.815
+predict_set_size / true_set_size:  0.9375
+[11,  1716] loss: 0.005, jaccard: 0.837
+predict_set_size / true_set_size:  0.9814241486068112
+[11,  1872] loss: 0.005, jaccard: 0.859
+lr: 5.631351470947266e-05 lr2: 2.0022583007812497e-05
+predict_set_size / true_set_size:  0.9788732394366197
+[12,   156] loss: 0.005, jaccard: 0.899
+predict_set_size / true_set_size:  0.9755244755244755
+[12,   312] loss: 0.005, jaccard: 0.835
+predict_set_size / true_set_size:  0.9886363636363636
+[12,   468] loss: 0.005, jaccard: 0.869
+predict_set_size / true_set_size:  1.006896551724138
+[12,   624] loss: 0.005, jaccard: 0.889
+predict_set_size / true_set_size:  0.9779179810725552
+[12,   780] loss: 0.005, jaccard: 0.819
+predict_set_size / true_set_size:  0.9803921568627451
+[12,   936] loss: 0.005, jaccard: 0.870
+predict_set_size / true_set_size:  0.9935064935064936
+[12,  1092] loss: 0.005, jaccard: 0.855
+predict_set_size / true_set_size:  1.003717472118959
+[12,  1248] loss: 0.005, jaccard: 0.868
+predict_set_size / true_set_size:  1.0301003344481605
+[12,  1404] loss: 0.005, jaccard: 0.794
+predict_set_size / true_set_size:  1.0
+[12,  1560] loss: 0.005, jaccard: 0.860
+predict_set_size / true_set_size:  1.0295081967213116
+[12,  1716] loss: 0.005, jaccard: 0.869
+predict_set_size / true_set_size:  0.9342105263157895
+[12,  1872] loss: 0.005, jaccard: 0.887
+lr: 4.22351360321045e-05 lr2: 1.5016937255859373e-05
+predict_set_size / true_set_size:  0.9832775919732442
+[13,   156] loss: 0.005, jaccard: 0.817
+predict_set_size / true_set_size:  0.9756838905775076
+[13,   312] loss: 0.005, jaccard: 0.856
+predict_set_size / true_set_size:  0.9736842105263158
+[13,   468] loss: 0.005, jaccard: 0.874
+predict_set_size / true_set_size:  0.9337979094076655
+[13,   624] loss: 0.005, jaccard: 0.843
+predict_set_size / true_set_size:  0.9855595667870036
+[13,   780] loss: 0.005, jaccard: 0.846
+predict_set_size / true_set_size:  0.980327868852459
+[13,   936] loss: 0.005, jaccard: 0.825
+predict_set_size / true_set_size:  1.0244755244755244
+[13,  1092] loss: 0.005, jaccard: 0.822
+predict_set_size / true_set_size:  0.9833333333333333
+[13,  1248] loss: 0.005, jaccard: 0.860
+predict_set_size / true_set_size:  0.9842271293375394
+[13,  1404] loss: 0.005, jaccard: 0.890
+predict_set_size / true_set_size:  0.965034965034965
+[13,  1560] loss: 0.005, jaccard: 0.847
+predict_set_size / true_set_size:  0.974025974025974
+[13,  1716] loss: 0.005, jaccard: 0.884
+predict_set_size / true_set_size:  0.9813664596273292
+[13,  1872] loss: 0.005, jaccard: 0.842
+lr: 3.167635202407837e-05 lr2: 1.126270294189453e-05
+predict_set_size / true_set_size:  1.0295081967213116
+[14,   156] loss: 0.004, jaccard: 0.851
+predict_set_size / true_set_size:  0.9930555555555556
+[14,   312] loss: 0.005, jaccard: 0.889
+predict_set_size / true_set_size:  0.9675090252707581
+[14,   468] loss: 0.005, jaccard: 0.839
+predict_set_size / true_set_size:  1.006825938566553
+[14,   624] loss: 0.005, jaccard: 0.868
+predict_set_size / true_set_size:  0.9794520547945206
+[14,   780] loss: 0.005, jaccard: 0.874
+predict_set_size / true_set_size:  0.9890510948905109
+[14,   936] loss: 0.005, jaccard: 0.860
+predict_set_size / true_set_size:  0.9697986577181208
+[14,  1092] loss: 0.005, jaccard: 0.867
+predict_set_size / true_set_size:  0.9735973597359736
+[14,  1248] loss: 0.005, jaccard: 0.838
+predict_set_size / true_set_size:  1.0058479532163742
+[14,  1404] loss: 0.005, jaccard: 0.853
+predict_set_size / true_set_size:  1.0557491289198606
+[14,  1560] loss: 0.005, jaccard: 0.831
+predict_set_size / true_set_size:  0.9735973597359736
+[14,  1716] loss: 0.005, jaccard: 0.862
+predict_set_size / true_set_size:  1.0
+[14,  1872] loss: 0.005, jaccard: 0.836
+lr: 2.3757264018058778e-05 lr2: 1e-05
+predict_set_size / true_set_size:  1.0065573770491802
+[15,   156] loss: 0.005, jaccard: 0.863
+predict_set_size / true_set_size:  0.9966887417218543
+[15,   312] loss: 0.005, jaccard: 0.834
+predict_set_size / true_set_size:  0.996551724137931
+[15,   468] loss: 0.005, jaccard: 0.853
+predict_set_size / true_set_size:  0.9646302250803859
+[15,   624] loss: 0.005, jaccard: 0.877
+predict_set_size / true_set_size:  0.98989898989899
+[15,   780] loss: 0.005, jaccard: 0.851
+predict_set_size / true_set_size:  1.0
+[15,   936] loss: 0.005, jaccard: 0.865
+predict_set_size / true_set_size:  0.9442622950819672
+[15,  1092] loss: 0.005, jaccard: 0.894
+predict_set_size / true_set_size:  0.9827586206896551
+[15,  1248] loss: 0.005, jaccard: 0.850
+predict_set_size / true_set_size:  1.013840830449827
+[15,  1404] loss: 0.005, jaccard: 0.862
+predict_set_size / true_set_size:  0.9555555555555556
+[15,  1560] loss: 0.005, jaccard: 0.876
+predict_set_size / true_set_size:  0.9493670886075949
+[15,  1716] loss: 0.005, jaccard: 0.832
+predict_set_size / true_set_size:  1.0035335689045937
+[15,  1872] loss: 0.005, jaccard: 0.814

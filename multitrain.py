@@ -28,6 +28,7 @@ from config import MultiConfig
 
 def main(model_id, use_element, is_save):
     config = MultiConfig()
+    print("epoch num", config.epoch_num)
     config.use_element = use_element
     print("loading data...")
     ids, data, labels = bmd.load_data(config.data_path)
@@ -45,44 +46,49 @@ def main(model_id, use_element, is_save):
         bpe.save_dict(dict_index2word, config.index2word_path)
         bpe.save_dict(dict_word2index, config.word2index_path)
         return 
-    if model_id == 4:
-        train_data, train_labels = bmd.build_data_set_HAN(data, labels, dict_word2index, num_sentences=config.num_sentences,
-                                                         sequence_length=config.sequence_length)
-        train_ids, valid_ids = bmd.split_data(ids, radio=0.8)
-        train_X, valid_X = bmd.split_data(train_data, radio=0.8)
-        train_y, valid_y = bmd.split_data(train_labels, radio=0.8)
-
-    else:
-        train_ids, valid_ids = bmd.split_data(ids, radio=0.8)
-        train_data, valid_data = bmd.split_data(data, radio=0.8)
-        train_labels, valid_labels = bmd.split_data(labels, radio=0.8)
         
-
-        train_ids, train_X, train_y = bmd.build_dataset(train_ids, train_data, train_labels,
-                 dict_word2index, config.max_text_len, config.num_class)
-        valid_ids, valid_X, valid_y = bmd.build_dataset(valid_ids, valid_data, valid_labels, 
-        dict_word2index, config.max_text_len, config.num_class)
-    print("trainset size:", len(train_ids))
-    print("validset size:", len(valid_ids))
-
 #    train_ids, train_X, train_y = bd.over_sample(train_ids, train_X, train_y)
 #    print(train_y.shape[0], Counter(train_y))
     if is_save == 'y':
-        # all_train_ids, all_train_X, all_train_y = bmd.build_dataset(ids, data, labels,
-        #     dict_word2index, config.max_text_len, config.num_class)
-        # dataset = MingLueMultiData(all_train_ids, all_train_X, all_train_y)
-        dataset = MingLueMultiData(valid_ids, valid_X, valid_y)
-    else: 
+        if model_id != 4:
+            all_train_ids, all_train_X, all_train_y = bmd.build_dataset(ids, data, labels, dict_word2index, config.max_text_len, config.num_class)
+            dataset = MingLueMultiData(all_train_ids, all_train_X, all_train_y)
+            # dataset = MingLueMultiData(valid_ids, valid_X, valid_y)
+        else:
+            train_data, train_labels = bmd.build_data_set_HAN(data, labels, dict_word2index, num_sentences=config.num_sentences, sequence_length=config.sequence_length, num_class=config.num_class)
+            print("save HAN...")
+            dataset = MingLueMultiData(ids, train_data, train_labels)
+            print(np.shape(train_data), np.shape(train_labels))
+            print(len(ids))
+    else:
+        if model_id == 4:
+            train_data, train_labels = bmd.build_data_set_HAN(data, labels, dict_word2index, num_sentences=config.num_sentences, sequence_length=config.sequence_length, num_class=config.num_class)
+            train_ids, valid_ids = bmd.split_data(ids, radio=0.9)
+            train_X, valid_X = bmd.split_data(train_data, radio=0.9)
+            train_y, valid_y = bmd.split_data(train_labels, radio=0.9)
+        else:
+            train_ids, valid_ids = bmd.split_data(ids, radio=0.9)
+            train_data, valid_data = bmd.split_data(data, radio=0.9)
+            train_labels, valid_labels = bmd.split_data(labels, radio=0.9)
+            train_ids, train_X, train_y = bmd.build_dataset(train_ids, train_data, train_labels, dict_word2index, config.max_text_len, config.num_class)
+            valid_ids, valid_X, valid_y = bmd.build_dataset(valid_ids, valid_data, valid_labels, dict_word2index, config.max_text_len, config.num_class)
+        print("trainset size:", len(train_ids))
+        print("validset size:", len(valid_ids))
         dataset = MingLueMultiData(train_ids, train_X, train_y)
+ 
     batch_size = config.batch_size
     if model_id == 4:
         batch_size = config.han_batch_size
+
+    del data
+
     train_loader = DataLoader(dataset=dataset, 
                                batch_size=batch_size, # 更改便于为不同模型传递不同batch
                                shuffle=True,
                                num_workers=config.num_workers)
-    dataset = MingLueMultiData(valid_ids, valid_X, valid_y)
-    valid_loader = DataLoader(dataset=dataset,
+    if is_save != 'y':
+        dataset = MingLueMultiData(valid_ids, valid_X, valid_y)
+        valid_loader = DataLoader(dataset=dataset,
                               batch_size=batch_size, # 更改便于为不同模型传递不同batch
                               shuffle=False,
                               num_workers=config.num_workers)
@@ -97,8 +103,14 @@ def main(model_id, use_element, is_save):
         model = model.cuda()  
     if use_element:
         all_element_vector = bpe.load_pickle(config.element_vector_path)
-    loss_fun = nn.MultiLabelSoftMarginLoss()
+
+    loss_weight = torch.FloatTensor(config.loss_weight)
+    print(loss_weight.mean())
+    loss_weight = 1 + 2 * (loss_weight.mean() - loss_weight)
+
+    #loss_fun = nn.MultiLabelSoftMarginLoss(loss_weight.cuda())
     
+    loss_fun = nn.MultiLabelSoftMarginLoss()
 #    optimizer = optim.Adam(model.parameters(),lr=config.learning_rate, weight_decay=config.weight_decay)
     optimizer = model.get_optimizer(config.learning_rate,
                                     config.learning_rate2,
@@ -106,6 +118,7 @@ def main(model_id, use_element, is_save):
     print("training...")
 
     weight_count = 0
+    max_score = 0
     for epoch in range(config.epoch_num):
         print("lr:",config.learning_rate,"lr2:",config.learning_rate2)
         running_loss = 0.0
@@ -157,14 +170,25 @@ def main(model_id, use_element, is_save):
                     print('[%d, %5d] loss: %.3f, jaccard: %.3f' %
                         (epoch + 1, i + 1, running_loss / config.step, running_jaccard))
                 running_loss = 0.0
-
+            
     
         if is_save != 'y' and epoch % config.epoch_step == config.epoch_step-1:
             print("predicting...")
             if model_id == 5 or model_id == 6:
-                loss_weight = do_eval(valid_loader, model, model_id, config, dmpv_model, dbow_model)
+                score = do_eval(valid_loader, model, model_id, config, dmpv_model, dbow_model)
             else:
-                loss_weight = do_eval(valid_loader, model, model_id, config)
+                score = do_eval(valid_loader, model, model_id, config)
+                if epoch >= 5:
+                    config.max_prob = 0.55
+                    print("max prob:", config.max_prob)
+                    score_2 = do_eval(valid_loader, model, model_id, config)
+                    config.max_prob = 0.45
+                    print("max prob:", config.max_prob)
+                    score_3 = do_eval(valid_loader, model, model_id, config)
+                    if score >= 0.788 and score > max_score:
+                        max_score = score
+                        save_path = config.model_path+"."+str(score)+".multi."+config.model_names[model_id]
+                        torch.save(model.state_dict(), save_path)
             if epoch >= 3:
                 weight_count += 1
             #    total_loss_weight += loss_weight

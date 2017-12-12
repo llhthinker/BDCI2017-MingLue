@@ -251,8 +251,8 @@ def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_le
             else:
                 index = 0    # <UNK>
             new_line.append(index)
-        line_splitted = sentences_splitted(text=new_line, split_chars=[dict_word2index[split_label] for split_label in ['。']])
-        # 向后补齐sequence_lengt5h
+        line_splitted = sentences_splitted(text=new_line, split_chars=[dict_word2index[split_label] for split_label in ['。', '！', '？']])
+        # 向后补齐sequence_length
         for ls_i, ls in enumerate(line_splitted):
             line_splitted[ls_i] = sentence_padding(sentence=ls, max_length=sequence_length)
         # 向后补齐num_sentences
@@ -268,11 +268,44 @@ def build_data_set_HAN(data, labels, dict_word2index, num_sentences, sequence_le
     return np.array(dataset, dtype=np.int64), np.array(new_labels, dtype=np.int64)
 
 
+def build_test_data_HAN(data, dict_word2index, num_sentences, sequence_length):
+    """
+    基于词表构建数据集（数值化）
+    """
+    dataset = []
+    indices = np.arange(len(data))
+#    np.random.shuffle(indices)
+    new_labels = []
+    for i in indices:
+        new_line = []
+        for word in data[i]:
+            if word in dict_word2index:
+                index = dict_word2index[word]
+            else:
+                index = 0    # <UNK>
+            new_line.append(index)
+        line_splitted = sentences_splitted(text=new_line, split_chars=[dict_word2index[split_label] for split_label in ['。', '！', '？']])
+        # 向后补齐sequence_length
+        for ls_i, ls in enumerate(line_splitted):
+            line_splitted[ls_i] = sentence_padding(sentence=ls, max_length=sequence_length)
+        # 向后补齐num_sentences
+        pad_num = num_sentences - len(line_splitted)
+        if pad_num < 0:
+            line_splitted = line_splitted[-1*num_sentences:]
+        while pad_num > 0:
+            line_splitted.append([1 for _ in range(sequence_length)])  # <PAD>
+            pad_num -= 1
+        dataset.append(line_splitted)
+    print(np.shape(dataset))
+    # [total_size, num_sentences, sequence_length]
+    return np.array(dataset, dtype=np.int64)
+
+
 
 def sentence_padding(sentence, max_length):
     if len(sentence) <= max_length:
         for _ in range(max_length-len(sentence)):
-            sentence.append(0)
+            sentence.append(1)
     else:
         sentence = sentence[max_length*(-1):]
     return sentence

@@ -4,6 +4,7 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
 import os
+# from sru.cuda_functional import SRU
 
 class Swish(nn.Module):
 

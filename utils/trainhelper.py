@@ -1,6 +1,7 @@
 import numpy as np
 
 import torch 
+from torch.autograd import Variable
 
 from models.fasttext import FastText
 from models.textcnn import TextCNN
@@ -9,7 +10,7 @@ from models.hierarchical import HAN
 from models.cnnwithdoc2vec import CNNWithDoc2Vec
 from models.rcnnwithdoc2vec import RCNNWithDoc2Vec
 from models.modelwithelement import ModelWithElement
-
+from models.CNNInception import CNNwithInception
 import preprocessor.builddataset as bd
 import preprocessor.getdoc2vec as gdv
 
@@ -38,6 +39,8 @@ def model_selector(config, model_id, use_element):
         model = CNNWithDoc2Vec(config)
     elif model_id == 6:
         model = RCNNWithDoc2Vec(config)
+    elif model_id == 7:
+        model = CNNwithInception(config)
     else:
         print("Input ERROR!")
         exit(2)
@@ -49,7 +52,7 @@ def _get_loss_weight(predicted, label, num_class):
     sample_per_class = torch.zeros(num_class)
     error_per_class = torch.zeros(num_class)
     for p, t in zip(predicted, label):
-        print(p, t)
+        # print(p, t)
         sample_per_class[t] += 1
         if p != t:
             error_per_class[t] += 1
@@ -62,6 +65,7 @@ def do_eval(valid_loader, model, model_id, has_cuda, dmpv_model=None, dbow_model
     true_labels = []
     predicted_labels = []
     model.is_training = False
+    model.dropout_rate = 0
     for data in valid_loader:
         ids, texts, labels = data
         if has_cuda:
@@ -77,15 +81,17 @@ def do_eval(valid_loader, model, model_id, has_cuda, dmpv_model=None, dbow_model
             outputs = model(Variable(texts))
         _, predicted = torch.max(outputs.data, 1)
         true_labels.extend(labels)
-        predicted_labels.extend(predicted.cpu()[0])
+        predicted_labels.extend(predicted.cpu())
 
     loss_weight = _get_loss_weight(predicted_labels, true_labels, 8)
     print(true_labels[:10])
     print(predicted_labels[:10])
     print("Acc:", accuracy(predicted_labels, true_labels))
-    print("Micro-Averaged F1:", cs.micro_avg_f1(predicted_labels, true_labels, model.num_class))
+    score = cs.micro_avg_f1(predicted_labels, true_labels, model.num_class)
+    print("Micro-Averaged F1:", score)
     model.is_training = True
-    return loss_weight
+    model.dropout_rate = 0.5
+    return loss_weight, score
 
 
 def build_element_vec(ids, all_element_vec):
