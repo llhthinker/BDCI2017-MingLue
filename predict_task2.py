@@ -11,6 +11,7 @@ from models.fasttext import FastText
 from models.textcnn import TextCNN
 from models.textrcnn import TextRCNN
 from models.hierarchical import HAN
+from models.hierarchical import HAN
 
 from config import Config, MultiConfig
 from data.mingluedata import MingLueTestData
@@ -28,6 +29,8 @@ def load_multi_model(model_path, model_id, config):
         model = TextCNN(config)
     elif model_id == 2:
         model = TextRCNN(config)
+    elif model_id == 3:
+        model = TextRNN(config)
     elif model_id == 4:
         model = HAN(config)
 #    print(model)

@@ -10,6 +10,7 @@ import argparse
 from models.fasttext import FastText
 from models.textcnn import TextCNN
 from models.textrcnn import TextRCNN
+from models.textrnn import TextRNN
 from models.hierarchical import HAN
 
 from config import Config, MultiConfig
@@ -27,6 +28,8 @@ def load_model(model_path, model_id, config):
         model = TextCNN(config)
     elif model_id == 2:
         model = TextRCNN(config)
+    elif model_id == 3:
+        model = TextRNN(config)
     elif model_id == 4:
         model = HAN(config)
 #    print(model)
@@ -74,7 +77,7 @@ def generate_result_json(tests_id, predicted_labels, predicted_multi_labels, res
         outf.write('\n')
 
 
-def main(task1_model_id, task1_model_path, task2_model_id, task2_model_path):
+def main(task1_model_id, task1_model_path):
     config = Config()
     multi_config = MultiConfig()
     config.is_training = False
@@ -101,14 +104,12 @@ def main(task1_model_id, task1_model_path, task2_model_id, task2_model_path):
     multi_config.vocab_size = len(dict_word2index)
     print("loading model...")
     model1 = load_model(task1_model_path, task1_model_id, config)
- #   model2 = load_multi_model(task2_model_path, task2_model_id, multi_config)
     
     print("model loaded")
 
     print("predicting...")
     predicted_labels = predict(test_loader, model1, config.has_cuda)
     predicted_multi_labels = [[]]
- #   predicted_multi_labels = predict_multi_label(test_loader, model2, multi_config)
     generate_result_json(tests_id, predicted_labels, predicted_multi_labels, config.result_path)
 
 
@@ -124,9 +125,7 @@ if __name__ == "__main__":
     parser.add_argument("--task1-model-id", type=int)
     parser.add_argument("--task1-model-path", type=str)
 
-    parser.add_argument("--task2-model-id", type=int)
-    parser.add_argument("--task2-model-path", type=str)
     args = parser.parse_args()
 
-    main(args.task1_model_id, args.task1_model_path, args.task1_model_id, args.task2_model_path)
+    main(args.task1_model_id, args.task1_model_path)
 #    test()

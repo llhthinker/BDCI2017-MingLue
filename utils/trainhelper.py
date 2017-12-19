@@ -6,6 +6,7 @@ from torch.autograd import Variable
 from models.fasttext import FastText
 from models.textcnn import TextCNN
 from models.textrcnn import TextRCNN
+from models.textrnn import TextRNN
 from models.hierarchical import HAN
 from models.cnnwithdoc2vec import CNNWithDoc2Vec
 from models.rcnnwithdoc2vec import RCNNWithDoc2Vec
@@ -33,6 +34,8 @@ def model_selector(config, model_id, use_element):
         model = TextCNN(config)
     elif model_id == 2:
         model = TextRCNN(config)
+    elif model_id == 3:
+        model = TextRNN(config)
     elif model_id == 4:
         model = HAN(config)
     elif model_id == 5:

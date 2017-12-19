@@ -10,6 +10,8 @@ import argparse
 from models.fasttext import FastText
 from models.textcnn import TextCNN
 from models.textrcnn import TextRCNN
+from models.textrnn import TextRNN
+from models.hierarchical import HAN
 
 from config import Config, MultiConfig
 from data.mingluedata import MingLueTestData
@@ -26,6 +28,10 @@ def load_model(model_path, model_id, config):
         model = TextCNN(config)
     elif model_id == 2:
         model = TextRCNN(config)
+    elif model_id == 3:
+        model = TextRNN(config)
+    elif model_id == 4:
+        model = HAN(config)
 #    print(model)
 #    time_stamp = '1510844987' 
 #    final_model_path = config.model_path+"."+time_stamp+"."+config.model_names[model_id]
