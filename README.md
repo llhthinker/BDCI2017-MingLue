@@ -1,5 +1,7 @@
 # BDCI2017-MingLue
-BDCI2017，让AI当法官：http://www.datafountain.cn/#/competitions/277/intro
+- BDCI2017，让AI当法官：http://www.datafountain.cn/#/competitions/277/intro
+- 比赛成绩：最终评测第四名
+- 感谢另外两位队友: [zxsong](https://github.com/szxSpark),  [dyhu](https://github.com/psubnwell)
 
 ## 代码运行环境说明
 
@@ -16,11 +18,12 @@ BDCI2017，让AI当法官：http://www.datafountain.cn/#/competitions/277/intro
 ## 任务说明
 
 - Task 1: 罚金等级预测 
+
 - Task 2: 法条预测
-##基本思路
+  ​
+## 基本思路
 
 ![Architecture](./Architecture.png)
-
 
 
 ### 分类器
@@ -37,21 +40,21 @@ BDCI2017，让AI当法官：http://www.datafountain.cn/#/competitions/277/intro
 - **深度学习方法** (基于word2vec): 
   1. 将所有词（或词频>阈值的词）组成一个词表，得到word2index字典和index2word字典；
   2. 将词映射为index，并且进行padding，然后通过词对应的index对词向量矩阵进行Lookup，得到当前文本对应的word2vec；
-  3. 使用FastText、CNN、RNN、RCNN、HAN等模型在word2vec的基础上进行特征提取。
+  3. 使用[FastText](https://github.com/llhthinker/NLP-Papers/blob/master/text%20classification/2017-09/Bag%20of%20Tricks%20for%20Efficient%20Text%20Classification/note.md)、[CNN](https://github.com/llhthinker/NLP-Papers/blob/master/text%20classification/2017-10/Convolutional%20Neural%20Networks%20for%20Sentence%20Classification/note.md)、RNN、[RCNN](https://github.com/llhthinker/NLP-Papers/blob/master/text%20classification/2017-10/Recurrent%20Convolutional%20Neural%20Networks%20for%20Text%20Classification/note.md)、HAN等模型在word2vec的基础上进行特征提取。
 
 ### 优化思路
 
 - 预处理
   - 数字离散化
   - 文本中的无用信息替换：如人名、地名等
-  - 数据增强: 同义词/同义短语替换
+  - 数据增强: [同义词/同义短语替换](https://github.com/llhthinker/NLP-Papers/blob/master/text%20classification/2017-10/Character-level%20Convolutional%20Networks%20for%20Text%20Classification/note.md#data-augmentation-using-thesaurus)
 - 多模型融合: 预测时，将多个模型的预测值的均值作为最终的预测结果
 - 如何解决不均匀分类问题
   - 调整Loss函数中不同标签样本权重
   - 过采样
   - 欠采样 （未采用）
 - 混合要素模型 （未采用）
-- 混合paragraph vector （未采用）
+- 混合[paragraph vector](https://github.com/llhthinker/NLP-Papers/blob/master/distributed%20representations/2017-11/Distributed%20Representations%20of%20Sentences%20and%20Documents/note.md) （未采用）
 - Inception in CNN
 - 卷积层个数：单层 vs. 多层 (未尝试)
 - 全连接层个数：单层 vs. 多层 （未尝试）
