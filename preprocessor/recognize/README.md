@@ -1,5 +1,7 @@
 # 预处理程序说明
 
+* 此模块目前存在问题，请不要使用。
+
 ## 运行方式
 
 `python preprocessing.py --input-file='../data/1-train/train.txt' --output-file='./train.txt'`
